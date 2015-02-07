@@ -1,4 +1,5 @@
 config.py
-js/jquery-1.11.2.min.js
+static/js/jquery-1.11.2.min.js
+static/js/jquery.modal.js
 *.pyc
 *.DS_Store

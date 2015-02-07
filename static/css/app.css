@@ -1,7 +1,17 @@
-body {
-	background-color: #87CEFA;
+html, body {
+	height: 100%;
+	background: #87cefa; /* Old browsers */
+	background: -moz-linear-gradient(top, #87cefa 0%, #88c8fc 50%, #5dabef 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87cefa), color-stop(50%,#88c8fc), color-stop(100%,#5dabef)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #87cefa 0%,#88c8fc 50%,#5dabef 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #87cefa 0%,#88c8fc 50%,#5dabef 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #87cefa 0%,#88c8fc 50%,#5dabef 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #87cefa 0%,#88c8fc 50%,#5dabef 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87cefa', endColorstr='#5dabef',GradientType=0 ); /* IE6-9 */
 	text-align: center;
 	text-rendering: optimizeLegibility;
+	margin: 0;
+	padding: 0;
 }
 
 
@@ -10,7 +20,8 @@ h1 {
 	font-size: 7rem;
 	font-family: Montserrat, sans-serif;
 	font-weight: 700;
-	margin: 5rem 0 0;
+	padding: 5rem 0 0;
+	margin: 0;
 }
 
 h2 {
@@ -22,7 +33,7 @@ h2 {
 
 }
 
-#matt-sucks {
+button {
 	font-size: 20px;
 	border: 1px;
 	padding: 1rem 3rem;
@@ -35,7 +46,7 @@ h2 {
 	color: #7be;
 }
 
-#matt-sucks:hover {
+button:hover {
 	box-shadow: 3px 3px 1px #6ad;
 	transform: translate(3px, 3px);
 }
