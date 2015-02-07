@@ -1,3 +1,4 @@
 config.py
+js/jquery-1.11.2.min.js
 *.pyc
 *.DS_Store
