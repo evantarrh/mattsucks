@@ -1,4 +1,30 @@
+body {
+	background-color: #87CEFA;
+	text-align: center;
+	text-rendering: optimizeLegibility;
+}
+
+
+h1 {
+	color: #f0fafa;
+	font-size: 7rem;
+	font-family: Montserrat, sans-serif;
+	font-weight: 700;
+	margin: 5rem 0 0;
+}
+
+h2 {
+	color: #f0fafa;
+	font-family: Merriweather, serif;
+	font-weight: 700;
+	font-style: italic;
+	margin: 0 0 3rem;
+
+}
+
 #matt-sucks {
 	font-size: 20px;
 	border: 1px;
+	padding: 1rem 3rem;
+	font-family: Montserrat, sans-serif;
 }
