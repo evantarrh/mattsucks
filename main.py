@@ -9,6 +9,9 @@ auth_token  = config.token
 client = TwilioRestClient(account_sid, auth_token)
  
 
+
+
+
 @app.route('/')
 def hello():
 	return render_template("index.html")
