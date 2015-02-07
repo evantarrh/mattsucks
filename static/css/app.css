@@ -26,5 +26,33 @@ h2 {
 	font-size: 20px;
 	border: 1px;
 	padding: 1rem 3rem;
+	word-spacing: 2px;
 	font-family: Montserrat, sans-serif;
+	box-shadow: 6px 6px 2px #7be;
+	transition: 0.2s all;
+	background-color: #f0fafa;
+	color: #7be;
+}
+
+#matt-sucks:hover {
+	box-shadow: 3px 3px 1px #6ad;
+	transform: translate(3px, 3px);
+}
+
+footer {
+	position: absolute;
+	font-size: 0.9rem;
+	color: #f0fafa;
+	text-decoration: none;
+	bottom: 7px;
+	left: 0;
+	right: 0;
+	width: 100%;
+	text-align: center;
+	padding-bottom: 0.5rem;
+	font-family: Merriweather;
+}
+
+footer > a {
+	color: #f0fafa;
 }
