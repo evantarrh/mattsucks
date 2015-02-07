@@ -29,6 +29,8 @@ h2 {
 	font-family: Merriweather, serif;
 	font-weight: 400;
 	font-style: italic;
+	line-height: 1.8rem;
+	height: 2rem;
 	margin: 0 0 3rem;
 
 }
@@ -54,7 +56,8 @@ button:hover {
 #testimonial {
 	font-family: Merriweather, serif;
 	font-weight: 400;
-	font-size: 1.15rem;
+	font-size: 1.2rem;
+	line-height: 1.5rem;
 	color: #455996;
 }
 
@@ -67,9 +70,9 @@ footer {
 	left: 0;
 	right: 0;
 	text-align: center;
-	padding: 1 0rem 0.5rem;
+	padding: 0 1rem 0.5rem;
 	font-family: Montserrat;
-	line-height: 1.2rem;
+	line-height: 1.8rem;
 }
 
 footer > a {
@@ -85,7 +88,7 @@ footer > a {
 		padding: 3rem 0 1rem;
 	}
 	#testimonial {
-		font-size: 1rem;
+		font-size: 1.1rem;
 	}
 }
 
@@ -101,9 +104,6 @@ footer > a {
 }
 
 @media only screen and (max-width: 480px) {	
-	html {
-		font-size: 12px;
-	}
 	h1 {
 		font-size: 4rem;
 	}

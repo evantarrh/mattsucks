@@ -39,7 +39,7 @@ $().ready(function() {
 					$(this).css("color", "#f0fafa");
 				}).animate({"opacity": 1}, 300);
 			}, 4000)
-			//$.post("/mattsucks");
+			$.post("/mattsucks");
 		}
 		else if (howManyTimesHaveWeShatOnMatt === 3) {
 			$("h1").animate({'opacity': 0}, 1000, function() {
@@ -66,7 +66,7 @@ $().ready(function() {
 					$(this).css("color", "#f0fafa");
 				}).animate({"opacity": 1}, 1000);
 			}, 4000)
-			//$.post("/mattrocks");
+			$.post("/mattrocks");
 		}
 		else {
 			$("h2").animate({'opacity': 0}, 200, function() {
