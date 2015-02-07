@@ -18,8 +18,8 @@ def hello():
 
 @app.route('/servo_post', methods=["POST"])
 def servo_pos():
-	message = client.messages.create(body="Matt sucks!",
-	to = config.evans_num,
+	message = client.messages.create(body="Hey Matt! You suck.",
+	to = config.matts_num,
 	from_ = "+16179350930")
 	print message.sid
 	return "You told Matt he sucks!"
