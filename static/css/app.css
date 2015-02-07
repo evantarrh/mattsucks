@@ -40,21 +40,21 @@ button {
 	margin: 0 0 3rem;
 	word-spacing: 2px;
 	font-family: Montserrat, sans-serif;
-	box-shadow: 6px 6px 2px #7be;
+	box-shadow: 6px 6px 2px #7ad;
 	transition: 0.2s all;
 	background-color: #f0fafa;
 	color: #7be;
 }
 
 button:hover {
-	box-shadow: 3px 3px 1px #6ad;
+	box-shadow: 3px 3px 1px #59c;
 	transform: translate(3px, 3px);
 }
 
 #testimonial {
 	font-family: Merriweather, serif;
 	font-weight: 400;
-	color: #377;
+	color: #455996;
 }
 
 footer {
