@@ -1,18 +1,22 @@
-
-var bad_testimonials = ["\"I've been shitting on Matt for years. He totally sucks.\" - Sahir",
+var bad_testimonials = ["\"I've been hating on Matt for years. He totally sucks.\" - Sahir",
 	"\"I only met him once, but yeah, Matt blows chunks.\" - Nate",
 	"\"Please stop.\" - Matt",
 	"\"Sorry Matt. But you do suck.\" - Evan",
-	"\"Having a second kid was a mistake.\" - Matt's dad",
-	"\"Matt is a huge weenie, and we all know it\" - Jaden Smith",
+	"\"Matt Is A Huge Weenie, And We All Know It\" - Jaden Smith",
 	"\"Shut up, Matt.\" - Tom Hanks",
 	"\"I visited Columbia yesterday, and Matt is the reason I'm not coming here.\" - Malia Obama",
-	"\"Matt has a lot of opinions, and all of them are bad.\" - Eunice"
+	"\"Matt has a lot of opinions, and all of them are bad.\" - Eunice",
+	"\"Matt? What a bag.\" - All of the judges"
 	];
 
-var nice_testimonials = ["\"Actually Matt is cool\" - one guy",
-	"\"Actually Matt is cool\" - another guy",
-	"\"Actually Matt is cool\" - some dweeb"
+var nice_testimonials = ["\"Actually Matt is super cool\" - some guy probably",
+	"\"Oh, Matt? Matt has sick references.\" - Rasmi",
+	"\"Most of the time, Matt doesn't suck.\" - Yih-Jen",
+	"\"Matt has killer dance moves.\" - Brian",
+	"\"Matt is a brilliant person.\" - Evan after Matt beat him at Trivia Crack",
+	"\"I freaking love that guy.\" - Dan",
+	"\"His presence shines radiance.\" - Lil B",
+	"\"Matt knows what to do. All the time.\" - W3Schools"
 	];
 
 var howManyTimesHaveWeShatOnMatt = 0;
@@ -40,14 +44,15 @@ $().ready(function() {
 		else if (howManyTimesHaveWeShatOnMatt === 3) {
 			$("h1").animate({'opacity': 0}, 1000, function() {
 				$(this).text("Matt rocks");
-				$(this).css("text-shadow", "3px 3px #ccc")
+				$(this).css("text-shadow", "3px 3px #ccc");
+				$(this).css("color", "#faa073");
 			}).animate({"opacity": 1}, 1000);
 			$("#matt-sucks").animate({'opacity': 0}, 1000, function() {
 				$(this).text("No wait! Tell Matt he rocks.");
 			}).animate({"opacity": 1}, 1000);
 			subheadReset = setTimeout(function() {
 				$("h2").animate({'opacity': 0}, 1000, function() {
-					$(this).text("And he deserves to know it.");
+					$(this).text("And he deserves to know it!");
 				}).animate({"opacity": 1}, 1000);
 			}, 4000)
 		}
@@ -57,7 +62,8 @@ $().ready(function() {
 			}).animate({"opacity": 1}, 200);
 			subheadReset = setTimeout(function() {
 				$("h2").animate({'opacity': 0}, 1000, function() {
-					$(this).text("And he deserves to know it.");
+					$(this).text("And he deserves to know it!");
+					$(this).css("color", "#f0fafa");
 				}).animate({"opacity": 1}, 1000);
 			}, 4000)
 			//$.post("/mattrocks");
@@ -68,7 +74,8 @@ $().ready(function() {
 			}).animate({"opacity": 1}, 200);
 			subheadReset = setTimeout(function() {
 				$("h2").animate({'opacity': 0}, 1000, function() {
-					$(this).text("And he deserves to know it.");
+					$(this).text("And he deserves to know it!");
+					$(this).css("color", "#f0fafa");
 				}).animate({"opacity": 1}, 1000);
 			}, 4000)
 		}

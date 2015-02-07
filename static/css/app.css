@@ -54,6 +54,7 @@ button:hover {
 #testimonial {
 	font-family: Merriweather, serif;
 	font-weight: 400;
+	font-size: 1.15rem;
 	color: #455996;
 }
 
@@ -65,12 +66,53 @@ footer {
 	bottom: 7px;
 	left: 0;
 	right: 0;
-	width: 100%;
 	text-align: center;
-	padding-bottom: 0.5rem;
+	padding: 1 0rem 0.5rem;
 	font-family: Montserrat;
+	line-height: 1.2rem;
 }
 
 footer > a {
 	color: #f0fafa;
 }
+
+@media only screen and (max-width: 800px) {
+	html {
+		font-size: 14px;
+	}
+	h1 {
+		font-size: 6rem;
+		padding: 3rem 0 1rem;
+	}
+	#testimonial {
+		font-size: 1rem;
+	}
+}
+
+@media only screen and (max-width: 640px) {
+	html {
+		font-size: 13px;
+		padding: 0 2rem;
+	}
+	h1 {
+		font-size: 5rem;
+		padding: 2rem 0 1rem;
+	}
+}
+
+@media only screen and (max-width: 480px) {	
+	html {
+		font-size: 12px;
+	}
+	h1 {
+		font-size: 4rem;
+	}
+}
+
+@media only screen and (max-width: 400px) {	
+	h1 {
+		font-size: 3.5rem;
+	}
+}
+
+
