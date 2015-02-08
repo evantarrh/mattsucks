@@ -14,7 +14,6 @@ html, body {
 	padding: 0;
 }
 
-
 h1 {
 	color: #f0fafa;
 	font-size: 7rem;
@@ -46,6 +45,7 @@ button {
 	transition: 0.2s all;
 	background-color: #f0fafa;
 	color: #7be;
+	cursor: pointer;
 }
 
 button:hover {
