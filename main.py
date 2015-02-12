@@ -1,6 +1,7 @@
 from twilio.rest import TwilioRestClient
 import config
 from flask import Flask, render_template, request, jsonify, url_for
+from backend import database as db
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
@@ -9,7 +10,7 @@ auth_token  = config.token
 client = TwilioRestClient(account_sid, auth_token)
 
 
- 
+
 @app.route('/')
 def hello():
 	return render_template("index.html")
@@ -29,6 +30,51 @@ def mattrocks():
 	from_ = config.twilio_num)
 	print message.sid
 	return "Aw, that's nice."
+
+@app.route('/<urlstring>', methods=["GET"])
+def mattsucks():
+	info = db.getPage(urlstring)
+	render_template("index.html", name = info["name"],
+						phone_number = info["phone_number"],
+						background_color = info["background_color"],
+						urlstring = info["urlstring"],
+						font = info["font"]
+						text_count = info["text_count"])
+
+
+@app.route('/sendtext/<urlstring>', methods=["POST"])
+def mattrocks():
+	#implement IP checking
+	info = db.getPage(urlstring)
+	message = client.messages.create(body="Hey " + info["name"] + "! You suck.",
+	to = info["phone_number"],
+	from_ = config.twilio_num)
+	print message.sid
+	return "You told matt that he sucks"
+
+@app.route('/createpage/', methods=["POST"])
+def mattrocks():
+	form_data = request.form
+	name = form_data["name"].replace(" ", "").lower()
+
+	#TODO: generate random color
+
+	if getPage(name) is None:
+		addPageToDB(name, form_data["name"], form["phone_number"],
+					"#87cefa")
+	else:
+		#check for name with numbers
+		random_number = 1
+		while(getPage(name + str(random_number)) is not None):
+			random_number += 1
+
+		name = name + str(random_number)
+		addPageToDB(name, form_data["name"], form["phone_number"],
+					"#87cefa")
+
+	return "Aw, that's nice."
+
+
 
 if __name__ == '__main__':
 	app.run(host="0.0.0.0")
