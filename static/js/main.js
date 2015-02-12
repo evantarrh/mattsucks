@@ -20,80 +20,39 @@ var nice_testimonials = ["\"Actually Matt is super cool\" - some guy probably",
 	];
 
 
-var howManyTimesHaveWeShatOnMatt = 0;
-
 var subheadReset;
+var numclicks = 0;
+
+var data = document.querySelector('#data');
+console.dir(data);
+var first_name = data.dataset.first_name;
+var urlstring = data.dataset.urlstring;
+
+
 
 $().ready(function() {
 
 	$("#matt-sucks").click(function(e) {
 		window.clearInterval(subheadReset);
-
-		if (howManyTimesHaveWeShatOnMatt < 3) {
-			$("h2").animate({'opacity': 0}, 200, function() {
-				$(this).text("The text you just sent him: \"Hey Matt! You suck.\"");
-				$(this).css("color", "#455996");
-			}).animate({"opacity": 1}, 200);
-			subheadReset = setTimeout(function() {
-				$("h2").animate({'opacity': 0}, 800, function() {
-					$(this).text("And he deserves to know it.");
-					$(this).css("color", "#f0fafa");
-				}).animate({"opacity": 1}, 300);
-			}, 4000)
-			$.post("/mattsucks");
+		if(numclicks >= 3){
+			$('h2').text("Cool your jets");
+		}else{
+			$.post("/sendtext/" + urlstring , function( response ){
+				console.dir(response);
+			})
 		}
-		else if (howManyTimesHaveWeShatOnMatt === 3) {
-			$("h1").animate({'opacity': 0}, 1000, function() {
-				$(this).text("Matt rocks");
-				$(this).css("text-shadow", "3px 3px #ccc");
-				$(this).css("color", "#faa073");
-			}).animate({"opacity": 1}, 1000);
-			$("#matt-sucks").animate({'opacity': 0}, 1000, function() {
-				$(this).text("No wait! Tell Matt he rocks.");
-			}).animate({"opacity": 1}, 1000);
-			subheadReset = setTimeout(function() {
-				$("h2").animate({'opacity': 0}, 1000, function() {
-					$(this).text("And he deserves to know it!");
-				}).animate({"opacity": 1}, 1000);
-			}, 4000)
-		}
-		else if (howManyTimesHaveWeShatOnMatt > 3 && howManyTimesHaveWeShatOnMatt < 6) {
-			$("h2").animate({'opacity': 0}, 200, function() {
-				$(this).text("You just told him to follow his dreams!");
-			}).animate({"opacity": 1}, 200);
-			subheadReset = setTimeout(function() {
-				$("h2").animate({'opacity': 0}, 1000, function() {
-					$(this).text("And he deserves to know it!");
-					$(this).css("color", "#f0fafa");
-				}).animate({"opacity": 1}, 1000);
-			}, 4000)
-			$.post("/mattrocks");
-		}
-		else {
-			$("h2").animate({'opacity': 0}, 200, function() {
-				$(this).text("Okay cool your jets he gets it.");
-			}).animate({"opacity": 1}, 200);
-			subheadReset = setTimeout(function() {
-				$("h2").animate({'opacity': 0}, 1000, function() {
-					$(this).text("And he deserves to know it!");
-					$(this).css("color", "#f0fafa");
-				}).animate({"opacity": 1}, 1000);
-			}, 4000)
-		}
-		howManyTimesHaveWeShatOnMatt++;
 	});
 
+
+
+
+
+
 	setInterval(function() {
-		if (howManyTimesHaveWeShatOnMatt < 3) {
-			$("#testimonial").animate({'opacity': 0}, 1000, function(){
-				$(this).text(bad_testimonials[ Math.floor(Math.random() * bad_testimonials.length) ]);
-			}).animate({'opacity': 1}, 1000);
-		}
-		else {
-			$("#testimonial").animate({'opacity': 0}, 1000, function(){
-				$(this).text(nice_testimonials[ Math.floor(Math.random() * nice_testimonials.length) ]);
-			}).animate({'opacity': 1}, 1000);			
-		}
+		$("#testimonial").animate({'opacity': 0}, 1000, function(){
+			$(this).text(bad_testimonials[ Math.floor(Math.random() * bad_testimonials.length) ]);
+		}).animate({'opacity': 1}, 1000);
+
 	}, 6000);
 
 

@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>{{name}} sucks.</title>
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  	<meta name="description" content="Matt Piccolella is a piece of human garbage.">
+	<head>
+		<meta charset="utf-8">
+		<title>{{first_name}} sucks.</title>
+	  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  	<meta name="description" content="Matt Piccolella is a piece of human garbage.">
 
-	<meta name="author" content="Evan Tarrh">
+		<meta name="author" content="Evan Tarrh">
 
-	<meta name="robots" content="nofollow">
+		<meta name="robots" content="nofollow">
 
-	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Merriweather:400,400italic,700italic' rel='stylesheet' type='text/css'>
-	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-	<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
-  	<link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
-</head>
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Merriweather:400,400italic,700italic' rel='stylesheet' type='text/css'>
+		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+		<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	  	<link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+	  	<article
+	  		id = "data"
+			data-urlstring = {{urlstring}}
+			data-firstName = {{first_name}}
+			data-lastName = {{last_name}}
+			data-color = {{color}}
+			data-font = {{font}}>
+		</article>
+	</head>
 
-<body>
-	<h1>{{name}} sucks</h1>
-	<h2>And he deserves to know it.</h2>
-	<button id="matt-sucks">Tell Matt he sucks.</button>
-	<div id="testimonial">"It's about time someone took him down a notch." - Matt's mom</div>
-	<footer>Made with love by <a href="http://evantarrh.com">Evan</a>. Special thanks to <a href="http://twitter.com/matthew_pic">Matt</a> for putting up with this monkey business.</footer>
-	<script src="{{ url_for('static', filename='js/jquery-1.11.2.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
-</body>
+	<body>
+		<h1>{{first_name}} sucks</h1>
+		<h2>And he deserves to know it.</h2>
+		<button id="matt-sucks">Tell Matt he sucks.</button>
+		<div id="testimonial">"It's about time someone took him down a notch." - Matt's mom</div>
+		<footer>Made with love by <a href="http://evantarrh.com">Evan</a>. Special thanks to <a href="http://twitter.com/matthew_pic">Matt</a> for putting up with this monkey business.</footer>
+		<script src="{{ url_for('static', filename='js/jquery-1.11.2.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+	</body>
+</html>
