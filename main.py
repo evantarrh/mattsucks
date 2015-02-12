@@ -34,7 +34,8 @@ def mattrocks():
 @app.route('/<urlstring>', methods=["GET"])
 def renderPage(urlstring):
 	info = db.getPage(urlstring)
-	return render_template("index.html", name = info["name"],
+	return render_template("index.html", first_name = info["first_name"],
+					last_name = info["last_name"],
 					phone_number = info["phone_number"],
 					background_color = info["background_color"],
 					urlstring = info["urlstring"],
@@ -43,10 +44,10 @@ def renderPage(urlstring):
 
 
 @app.route('/sendtext/<urlstring>', methods=["POST"])
-def sendText():
+def sendText(urlstring):
 	#implement IP checking
 	info = db.getPage(urlstring)
-	message = client.messages.create(body="Hey " + info["name"] + "! You suck.",
+	message = client.messages.create(body="Hey " + info["first_name"] + "! You suck.",
 	to = info["phone_number"],
 	from_ = config.twilio_num)
 	print message.sid
