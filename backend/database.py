@@ -1,14 +1,13 @@
 from pymongo import MongoClient
 import datetime
-import imgur as im
 
 client = MongoClient()
 db = client.mattsucks
 
-def addPageToDB(urlstring, name, phone_number, background_color):
+def addPageToDB(urlstring, name, phone_number, background_color, font):
 
 	entry = {"urlstring" : urlstring, "name" : name, "phone_number" : phone_number,
-				"background_color" : background_color, "font" : font
+				"background_color" : background_color, "font" : font,
 				"text_count" : 0}
 	return db.pages.insert(entry)
 
@@ -18,3 +17,7 @@ def incrementPageCount(urlstring):
 
 def getPage(urlstring):
 	return db.pages.find_one({"urlstring": urlstring})
+
+
+
+addPageToDB("mikehunt", "Mike Hunt", "7813256012", "#BDE", "calibri")
