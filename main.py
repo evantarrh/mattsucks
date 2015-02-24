@@ -40,7 +40,8 @@ def renderPage(urlstring):
 					background_color = info["background_color"],
 					urlstring = info["urlstring"],
 					font = info["font"],
-					text_count = info["text_count"])
+					text_count = info["text_count"],
+					page_title = info["first+name"] + "sucks")
 
 
 @app.route('/sendtext/<urlstring>', methods=["POST"])
