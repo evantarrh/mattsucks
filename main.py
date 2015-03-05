@@ -44,7 +44,7 @@ def renderPage(urlstring):
 					urlstring = info["urlstring"],
 					font = info["font"],
 					text_count = info["text_count"],
-					page_title = info["first_name"] + "sucks")
+					gender = info["gender"])
 
 
 @app.route('/sendtext/<urlstring>', methods=["POST"])
@@ -57,12 +57,17 @@ def sendText(urlstring):
 	print message.sid
 	return "You told matt that he sucks"
 
-
 @app.route('/create', methods=["GET", "POST"])
+def newpage():
+	form = createForm.createPageForm()
+	return render_template('create.html', form=form, error=False)
+
+
+@app.route('/create-page', methods=["GET", "POST"])
 def createpage():
 	form = createForm.createPageForm()
+
 	if form.validate_on_submit():
-		print "HIETRHIERNEFIONEFWSIFWN"
 
 		form_data = request.form
 		name = (form_data["first_name"] + form_data["last_name"]).replace(" ", "").lower()
@@ -82,8 +87,12 @@ def createpage():
 					"comic sans ms")
 
 		return redirect('/' + name)
+	#non valid form entry
+	else:
+		return render_template('create.html', form=form, error=True)
 
-	return render_template('create.html', form=form)
+
+	return render_template('create.html', form=form, error=True)
 
 
 
