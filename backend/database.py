@@ -10,8 +10,10 @@ def addPageToDB(urlstring, firstName, lastName, phone_number, background_color, 
 	genderData = json.load(urllib2.urlopen("https://gender-api.com/get?name=" + firstName))
 	if genderData["gender"] == "male":
 		gender = "he"
-	else:
+	elif genderData["gender"] == "female":
 		gender = "she"
+	else:
+		gender = "they"
 
 	entry = {"urlstring" : urlstring, "first_name" : firstName, "last_name" : lastName,
 				"phone_number" : phone_number,
