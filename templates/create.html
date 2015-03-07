@@ -8,16 +8,17 @@
 </div>
 {% endif %}
 
+<div class="form-container">
+    <form method="POST" action="/create-page">
+        {{ form.csrf_token }}
+        {{ form.hidden_tag() }}
+        {{ form.first_name.label }} {{ form.first_name(size=20, placeholder="First name")}}
+        {{ form.last_name.label }} {{ form.last_name(size=20, placeholder="Last name") }}
+        {{ form.phone_number.label }} {{ form.phone_number(size=20, placeholder="Phone number") }}
 
-<form method="POST" action="/create-page">
-    {{ form.csrf_token }}
-    {{ form.hidden_tag() }}
-    {{ form.first_name.label }} {{ form.first_name(size=20) }}
-    {{ form.last_name.label }} {{ form.last_name(size=20) }}
-    {{ form.phone_number.label }} {{ form.phone_number(size=20) }}
-
-    <input type="submit" value="Go">
-</form>
+        <input type="submit" id="submit-button" value="Go!">
+    </form>
+</div>
 
 
 

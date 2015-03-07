@@ -1,3 +1,52 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
 html, body {
 	height: 100%;
 	background: #87cefa; /* Old browsers */
@@ -59,6 +108,86 @@ button:hover {
 	font-size: 1.2rem;
 	line-height: 1.5rem;
 	color: #455996;
+}
+
+form-container {
+	width: 100%;
+	text-align: center;
+	padding: 50px;
+}
+
+form {
+	font-family: Montserrat, sans-serif;
+	font-weight: 400px;
+	padding: 50px;
+	width: 300px;
+	display: inline-block;
+}
+
+form > input {
+	color: #7be;
+	font: inherit;
+	width: 100%;
+	line-height: 2rem;
+	margin: 0;
+	padding: 15px;
+	overflow: hidden;
+	border-top: 1px #ddd;
+	border-left: 0;
+	border-right: 1px #ddd;
+	font-size: 100%;
+	vertical-align: baseline;
+	display: block;
+}
+
+form:first-child {
+	border-top: 0;
+}
+
+form:last-child {
+	border-top: 0;
+}
+
+form > input:active, form > input:focus {
+	outline: 0;
+	outline-style: none;
+	outline-width: 0;
+}
+
+form > label {
+	display: none;
+}
+
+#submit-button {
+	border-top: 0;
+	border: 0;
+	font-size: 1.25rem;
+	cursor: pointer;
+	color: #f0fafa;
+	text-shadow: 1px 1px 1px #444;
+	background-color: #48d;
+	width: 330px;
+	padding: 5px;
+	margin: 10px 0;
+}
+
+#submit-button:hover {
+	background-color: #59e;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+	color: #aaa;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	color: #aaa;
+	opacity: 1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color: #aaa;
+	opacity: 1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+	color: #aaa;
 }
 
 footer {
