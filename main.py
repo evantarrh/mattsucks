@@ -1,14 +1,17 @@
 from twilio.rest import TwilioRestClient
-import config
-from flask import Flask, render_template, request, jsonify, url_for
+from flask import Flask, render_template, request, jsonify, url_for, redirect
 from backend import database as db
+from backend import config
+from backend import form as createForm
+
+
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
 account_sid = config.acct_sid
 auth_token  = config.token
 client = TwilioRestClient(account_sid, auth_token)
-
+app.secret_key = config.secret_key
 
 
 @app.route('/')
@@ -32,47 +35,64 @@ def mattrocks():
 	return "Aw, that's nice."
 
 @app.route('/<urlstring>', methods=["GET"])
-def mattsucks():
+def renderPage(urlstring):
 	info = db.getPage(urlstring)
-	render_template("index.html", name = info["name"],
-						phone_number = info["phone_number"],
-						background_color = info["background_color"],
-						urlstring = info["urlstring"],
-						font = info["font"]
-						text_count = info["text_count"])
+	return render_template("index.html", first_name = info["first_name"],
+					last_name = info["last_name"],
+					phone_number = info["phone_number"],
+					background_color = info["background_color"],
+					urlstring = info["urlstring"],
+					font = info["font"],
+					text_count = info["text_count"],
+					gender = info["gender"])
 
 
 @app.route('/sendtext/<urlstring>', methods=["POST"])
-def mattrocks():
+def sendText(urlstring):
 	#implement IP checking
 	info = db.getPage(urlstring)
-	message = client.messages.create(body="Hey " + info["name"] + "! You suck.",
+	message = client.messages.create(body="Hey " + info["first_name"] + "! You suck.",
 	to = info["phone_number"],
 	from_ = config.twilio_num)
 	print message.sid
 	return "You told matt that he sucks"
 
-@app.route('/createpage/', methods=["POST"])
-def mattrocks():
-	form_data = request.form
-	name = form_data["name"].replace(" ", "").lower()
+@app.route('/create', methods=["GET", "POST"])
+def newpage():
+	form = createForm.createPageForm()
+	return render_template('create.html', form=form, error=False)
 
-	#TODO: generate random color
 
-	if getPage(name) is None:
-		addPageToDB(name, form_data["name"], form["phone_number"],
-					"#87cefa")
+@app.route('/create-page', methods=["GET", "POST"])
+def createpage():
+	form = createForm.createPageForm()
+
+	if form.validate_on_submit():
+
+		form_data = request.form
+		name = (form_data["first_name"] + form_data["last_name"]).replace(" ", "").lower()
+
+		#TODO: generate random color
+		base = name
+		counter = 1
+		while db.getPage(base) is not None:
+			name = name + str(counter)
+			counter += 1
+
+		db.addPageToDB(name,
+					form_data["first_name"],
+					form_data["last_name"],
+					"4843939393",
+					"#87cefa",
+					"comic sans ms")
+
+		return redirect('/' + name)
+	#non valid form entry
 	else:
-		#check for name with numbers
-		random_number = 1
-		while(getPage(name + str(random_number)) is not None):
-			random_number += 1
+		return render_template('create.html', form=form, error=True)
 
-		name = name + str(random_number)
-		addPageToDB(name, form_data["name"], form["phone_number"],
-					"#87cefa")
 
-	return "Aw, that's nice."
+	return render_template('create.html', form=form, error=True)
 
 
 

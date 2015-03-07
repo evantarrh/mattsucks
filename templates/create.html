@@ -1,0 +1,24 @@
+{% extends "foundation.html" %}
+{% block title %} {{ super() }} {% endblock %}
+{% block body %}
+
+{% if error %}
+<div class="error">
+	"you goofed. Try the form again"
+</div>
+{% endif %}
+
+
+<form method="POST" action="/create-page">
+    {{ form.csrf_token }}
+    {{ form.hidden_tag() }}
+    {{ form.first_name.label }} {{ form.first_name(size=20) }}
+    {{ form.last_name.label }} {{ form.last_name(size=20) }}
+    {{ form.phone_number.label }} {{ form.phone_number(size=20) }}
+
+    <input type="submit" value="Go">
+</form>
+
+
+
+{% endblock %}
