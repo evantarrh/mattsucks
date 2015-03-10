@@ -70,16 +70,20 @@ def createpage():
 		name = (form_data["first_name"] + form_data["last_name"]).replace(" ", "").lower()
 
 		#TODO: generate random color
+
 		base = name
 		counter = 1
 		while db.getPage(base) is not None:
-			name = name + str(counter)
+			base = name + str(counter)
 			counter += 1
+
+		if counter is not 1:
+			name += str(counter)
 
 		db.addPageToDB(name,
 					form_data["first_name"],
 					form_data["last_name"],
-					"4843939393",
+					form_data["phone_number"],
 					"#87cefa",
 					"comic sans ms")
 
