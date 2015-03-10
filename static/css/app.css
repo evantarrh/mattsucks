@@ -154,6 +154,12 @@ form > label {
 	display: none;
 }
 
+input[type=text], input[type=submit] {
+	margin: 0;
+	border-radius: 0;
+	-webkit-appearance: none;
+}
+
 .incorrect {
 	color: #ff6a69;
 }
@@ -169,23 +175,30 @@ form > label {
 }
 
 #submit-button {
-	border-top: 0;
+	border: 0;
 	border-radius: none;
 	line-height: 2rem;
 	font-size: 1.25rem;
-	cursor: pointer;
 	color: #f0fafa;
-	text-shadow: 1px 1px 1px #444;
-	background-color: #48d;
 	width: 330px;
 	padding: 15px;
 	margin: 25px 0;
-	transition: 0.2s ease all;
+	transition: 0.3s ease all;
 	-webkit-appearance: none;
 }
 
-#submit-button:hover {
+.valid-submit {
+	background-color: #48d;
+	text-shadow: 1px 1px 1px #444;
+	cursor: pointer;
+}
+
+.valid-submit:hover {
 	background-color: #59e;
+}
+
+.invalid-submit {
+	background-color: #ccc;
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */
