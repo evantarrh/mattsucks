@@ -61,6 +61,7 @@ html, body {
 	text-rendering: optimizeLegibility;
 	margin: 0;
 	padding: 0;
+	-webkit-appearance: none;
 }
 
 h1 {
@@ -94,6 +95,7 @@ button {
 	background-color: #f0fafa;
 	color: #7be;
 	cursor: pointer;
+	-webkit-appearance: none;
 }
 
 button:hover {
@@ -118,13 +120,14 @@ form-container {
 form {
 	font-family: Montserrat, sans-serif;
 	font-weight: 400px;
-	padding: 50px;
+	margin: 50px 30px 0 0;
 	width: 300px;
 	display: inline-block;
+	-webkit-appearance: none;
 }
 
 form > input {
-	color: #87cefa;
+	color: #aaa;
 	font: inherit;
 	width: 100%;
 	line-height: 2rem;
@@ -137,6 +140,7 @@ form > input {
 	font-size: 100%;
 	vertical-align: baseline;
 	display: block;
+	-webkit-appearance: none;
 	/*transition: 0.2s ease all */
 }
 
@@ -148,6 +152,10 @@ form > input:active, form > input:focus, button:active, button:focus {
 
 form > label {
 	display: none;
+}
+
+.incorrect {
+	color: #ff6a69;
 }
 
 #first_name {
@@ -162,7 +170,7 @@ form > label {
 
 #submit-button {
 	border-top: 0;
-	border: 0;
+	border-radius: none;
 	line-height: 2rem;
 	font-size: 1.25rem;
 	cursor: pointer;
@@ -173,6 +181,7 @@ form > label {
 	padding: 15px;
 	margin: 25px 0;
 	transition: 0.2s ease all;
+	-webkit-appearance: none;
 }
 
 #submit-button:hover {
