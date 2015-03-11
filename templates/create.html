@@ -20,52 +20,6 @@
     </form>
 </div>
 
-<script>
-    function nameValidation() {
-        var firstName = document.getElementById("first_name");
-        var lastName = document.getElementById("last_name");
-        var phoneNumber = document.getElementById("phone_number");
-
-        if (firstName.value.length < 3) {
-            firstName.style.color = "#aaa";
-        }
-        else if (firstName.value.length < 15) {
-            firstName.style.color = "#87cefa";
-        }
-        else {
-            firstName.style.color = "#ff6a69";
-        }
-
-        if (lastName.value.length < 3) {
-            lastName.style.color = "#aaa";
-        }
-        else if (lastName.value.length < 15) {
-            lastName.style.color = "#87cefa";
-        }
-        else {
-            lastName.style.color = "#ff6a69";
-        }
-
-        phoneValidation(phoneNumber);
-    }
-
-    function phoneValidation(phoneInput) {
-
-        var cleanedInput = phoneInput.value.toString().replace(/\D+/g, "").replace(/^[01]/, "");
-
-        if (cleanedInput.length < 10) {
-            phoneInput.style.color = "#aaa";
-        }
-        else if (cleanedInput.length === 10) {
-           phoneInput.style.color = "#87cefa";
-        }
-        else {
-            phoneInput.style.color = "#ff6a69";
-        }
-    }
-
-    window.setInterval(nameValidation, 100);
-
-</script>
+<script src="{{ url_for('static', filename='js/form.js') }}"></script>
 
 {% endblock %}
