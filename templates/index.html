@@ -6,7 +6,9 @@
 	data-firstname="{{first_name}}"
 	data-backgroundcolor="{{background_color}}"
 	data-font="{{font}}"
-	data-gender="{{gender}}">
+	data-gender="{{gender}}"
+    data-urlstring = "{{urlstring}}"
+    >
 
 </article>
 
@@ -20,7 +22,7 @@
 	<button id="matt-sucks">Tell {{first_name}} {{gender}} sucks.</button>
 {% endif %}
 
-<div id="testimonial">"It's about time someone took him down a notch." - Matt's mom</div>
+<div id="testimonial">"It's about time someone took him down a notch." - {{first_name}}'s mom</div>
 
 <script src="{{ url_for('static', filename='js/jquery-1.11.2.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>

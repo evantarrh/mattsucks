@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, jsonify, url_for, redirect
 from backend import database as db
 from backend import config
 from backend import form as createForm
+import re
 
 
 app = Flask(__name__)
@@ -69,22 +70,28 @@ def createpage():
 		form_data = request.form
 		name = (form_data["first_name"] + form_data["last_name"]).replace(" ", "").lower()
 
+		number = re.sub("[^0-9]", "", form_data["phone_number"])
+		if number[0] == "1":
+			number = number[1:]
+
 		#TODO: generate random color
 
 		base = name
 		counter = 1
 		while db.getPage(base) is not None:
-			base = name + str(counter)
 			counter += 1
+			base = name + str(counter)
 
 		if counter is not 1:
 			name += str(counter)
 
+		print name
+
 		db.addPageToDB(name,
 					form_data["first_name"],
 					form_data["last_name"],
-					form_data["phone_number"],
-					"#87cefa",
+					number,
+					"#fcbb85",
 					"comic sans ms")
 
 		return redirect('/' + name)

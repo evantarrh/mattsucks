@@ -1,23 +1,22 @@
-var bad_testimonials = ["\"I've been hating on Matt for years. He totally sucks.\" - Sahir",
-	"\"I only met him once, but yeah, Matt blows chunks.\" - Nate",
-	"\"Please stop.\" - Matt",
-	"\"Sorry Matt. But you do suck.\" - Evan",
-	"\"Matt Is A Huge Weenie, And We All Know It\" - Jaden Smith",
-	"\"Shut up, Matt.\" - Tom Hanks",
-	"\"I visited Columbia yesterday, and Matt is the reason I'm not coming here.\" - Malia Obama",
-	"\"Matt has a lot of opinions, and all of them are bad.\" - Eunice",
-	"\"Matt? What a bag.\" - All of the judges"
-	];
-
-var buttonReset;
-var numclicks = 0;
-
-var data = document.querySelector('#data');
-console.dir(data);
-var first_name = data.dataset.first_name;
-var urlstring = data.dataset.urlstring;
-
 $().ready(function() {
+	var buttonReset;
+	var numclicks = 0;
+
+	var data = document.querySelector('#data');
+	var first_name = data.dataset.firstname;
+	var urlstring = data.dataset.urlstring;
+	var page_color = data.dataset.backgroundcolor;
+	
+	var bad_testimonials = ["\"I've been hating on " + first_name + " for years. He totally sucks.\" - His Holiness the Dalai Lama",
+		"\"I only met him once, but yeah, " + first_name + " blows chunks.\" - Mary-Kate Olsen",
+		"\"Please stop.\" - " + first_name,
+		"\"Sorry " + first_name + ". But you do suck.\" - Jackie Chan",
+		"\"" + first_name + " Is A Huge Weenie, And We All Know It\" - Jaden Smith",
+		"\"Shut up, " + first_name + ".\" - Tom Hanks",
+		"\"I visited Columbia yesterday, and " + first_name + " is the reason I'm not coming here.\" - Malia Obama",
+		"\"" + first_name + " has a lot of opinions, and all of them are bad.\" - Morgan Freeman",
+		"\"" + first_name + "? What a bag.\" - Former President Ronald Reagan"
+		];
 
 	$("#matt-sucks").click(function(e) {
 		window.clearInterval(buttonReset);
@@ -29,24 +28,43 @@ $().ready(function() {
 			});
 			
 			$("button").fadeIn(function() {
-				$(this).text("Nice! You told Matt he sucks.");
+				$(this).text("Nice! You told " + first_name + " he sucks.");
 				$(this).css("color", "#48d");
 			});
 			buttonReset = setTimeout(function() {
 				$("button").fadeIn(function() {
-					$(this).text("Tell Matt he sucks.");
+					$(this).text("Tell " + first_name + " he sucks.");
 					$(this).css("color", "#87cefa");
 				});
 			}, 4000);
 		}
 	});
 
+	function setColors() {
+		$('body,html').css({
+			background: page_color 
+		});
+		$('h1').css({
+			color: shade(page_color, 0.9)
+		});
+		//todo: all the other fucking colors
+
+	}
+
+	function shade(color, percent) {   
+	    var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;
+	    return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1);
+	}
+
+	// updates testimonials w/ random new one every 6 seconds
 	setInterval(function() {
 		$("#testimonial").animate({'opacity': 0}, 1000, function(){
 			$(this).text(bad_testimonials[ Math.floor(Math.random() * bad_testimonials.length) ]);
 		}).animate({'opacity': 1}, 1000);
 
 	}, 6000);
+
+	setColors();
 
 
 });

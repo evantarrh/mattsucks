@@ -1,4 +1,6 @@
 window.onload = function() {
+    var hasBeenValid = false;
+
     function nameValidation() {
         var firstName = document.getElementById("first_name");
         var lastName = document.getElementById("last_name");
@@ -33,11 +35,18 @@ window.onload = function() {
         var isPhoneValid = phoneValidation(phoneNumber);
 
         if (isPhoneValid && isFirstNameValid && isLastNameValid) {
-            submitButton.removeAttribute("class", "invalid-submit");
-            submitButton.setAttribute("class", "valid-submit");            
             submitButton.disabled = false;
+            if (!hasBeenValid) {
+                hasBeenValid = true;
+                submitButton.style.visibility = "visible";
+            }
+            else {
+                submitButton.removeAttribute("class", "invalid-submit");
+                submitButton.setAttribute("class", "valid-submit");
+            }
         }
-        else {
+        // only add invalid class if form has already been valid
+        else if (hasBeenValid){
             submitButton.removeAttribute("class", "valid-submit");
             submitButton.setAttribute("class", "invalid-submit");
             submitButton.disabled = true;
