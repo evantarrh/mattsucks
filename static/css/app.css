@@ -176,6 +176,7 @@ input[type=text], input[type=submit] {
 
 #submit-button {
 	visibility: hidden;
+	opacity: 0;
 	border: 0;
 	border-radius: none;
 	line-height: 2rem;

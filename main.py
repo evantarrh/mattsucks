@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, jsonify, url_for, redirect
 from backend import database as db
 from backend import config
 from backend import form as createForm
-import re
+import re, random
 
 
 app = Flask(__name__)
@@ -14,6 +14,10 @@ auth_token  = config.token
 client = TwilioRestClient(account_sid, auth_token)
 app.secret_key = config.secret_key
 
+def getColor():
+	# ye olde arbitrarily selected list o' colors
+	colors = ["#fcbb85", "#fc8b7c", "#87cefa", "#5bbc74", "#8bbc55", "#c9ad7a", "#5f96e8", "#6bd2ff", "#52d1ac", "#e88d5d", "#b59ede", "#a2dec5", "#a4cbca"]
+	return random.choice(colors)
 
 @app.route('/')
 def hello():
@@ -85,13 +89,11 @@ def createpage():
 		if counter is not 1:
 			name += str(counter)
 
-		print name
-
 		db.addPageToDB(name,
 					form_data["first_name"],
 					form_data["last_name"],
 					number,
-					"#fcbb85",
+					getColor(),
 					"comic sans ms")
 
 		return redirect('/' + name)

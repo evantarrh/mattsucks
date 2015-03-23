@@ -29,12 +29,12 @@ $().ready(function() {
 			
 			$("button").fadeIn(function() {
 				$(this).text("Nice! You told " + first_name + " he sucks.");
-				$(this).css("color", "#48d");
+				$(this).css("color", shade(page_color, -0.4));
 			});
 			buttonReset = setTimeout(function() {
 				$("button").fadeIn(function() {
 					$(this).text("Tell " + first_name + " he sucks.");
-					$(this).css("color", "#87cefa");
+					$(this).css("color", page_color);
 				});
 			}, 4000);
 		}
@@ -42,9 +42,19 @@ $().ready(function() {
 
 	function setColors() {
 		$('body,html').css({
-			background: page_color 
+			background: page_color
 		});
-		$('h1').css({
+		$('button').css({
+			color: page_color,
+			background: shade(page_color, 0.9),
+			boxShadow: "6px 6px 2px" + shade(page_color, -0.2)
+		});
+		$('button').mouseover(function(){
+			$(this).css({boxShadow: "3px 3px 1px" + shade(page_color, -0.3)})
+		}).mouseout(function() {
+			$(this).css({boxShadow: "6px 6px 2px" + shade(page_color, -0.2)})			
+		});
+		$('h1, footer').css({
 			color: shade(page_color, 0.9)
 		});
 		//todo: all the other fucking colors

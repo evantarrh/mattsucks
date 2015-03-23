@@ -39,6 +39,7 @@ window.onload = function() {
             if (!hasBeenValid) {
                 hasBeenValid = true;
                 submitButton.style.visibility = "visible";
+                submitButton.style.opacity = 1;                
             }
             else {
                 submitButton.removeAttribute("class", "invalid-submit");
