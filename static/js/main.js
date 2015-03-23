@@ -5,7 +5,7 @@ $().ready(function() {
 	var data = document.querySelector('#data');
 	var first_name = data.dataset.firstname;
 	var urlstring = data.dataset.urlstring;
-	var page_color = "#FCA96A";
+	var page_color = data.dataset.backgroundcolor;
 	
 	var bad_testimonials = ["\"I've been hating on " + first_name + " for years. He totally sucks.\" - His Holiness the Dalai Lama",
 		"\"I only met him once, but yeah, " + first_name + " blows chunks.\" - Mary-Kate Olsen",
