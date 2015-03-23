@@ -16,7 +16,7 @@ app.secret_key = config.secret_key
 
 def getColor():
 	# ye olde arbitrarily selected list o' colors
-	colors = ["#fcbb85", "#fc8b7c", "#87cefa", "#5bbc74", "#8bbc55", "#c9ad7a", "#5f96e8", "#6bd2ff", "#52d1ac", "#e88d5d", "#b59ede", "#a2dec5", "#a4cbca"]
+	colors = ["#fcbb85", "#fc8b7c", "#87cefa", "#5bbc74", "#8bbc55", "#c9ad7a", "#5f96e8", "#6bd2ff", "#52d1ac", "#e88d5d", "#b59ede", "#a2dec5", "#a4cbca", "#fca96a"]
 	return random.choice(colors)
 
 @app.route('/')

@@ -60,7 +60,7 @@ html, body {
 	text-align: center;
 	text-rendering: optimizeLegibility;
 	margin: 0;
-	padding: 0;
+	padding: 0 20px;
 	-webkit-appearance: none;
 }
 
@@ -107,7 +107,7 @@ button:hover {
 	font-family: Merriweather, serif;
 	font-weight: 400;
 	font-size: 1.2rem;
-	line-height: 1.5rem;
+	line-height: 1.8rem;
 	color: #666; /* ▐  ⊙ ▃ ⊙ ▐ */
 }
 
@@ -221,24 +221,41 @@ input[type=text], input[type=submit] {
 footer {
 	position: absolute;
 	font-size: 0.9rem;
-	color: #f0fafa;
+	color: #fff;
+	background-color: #666;
 	text-decoration: none;
-	bottom: 7px;
 	left: 0;
 	right: 0;
+	bottom: 0;
 	text-align: center;
-	padding: 0 1rem 0.5rem;
 	font-family: Montserrat;
-	line-height: 1.8rem;
+	line-height: 5rem;
 }
 
-footer > a {
-	color: #f0fafa;
+footer > span {
+	display: inline-block;
+}
+
+footer > span > a {
+	color: #87cefa; /* default blue */
+	text-decoration: none;
+	transition: 0.2s ease all;
+}
+
+.footer-left {
+	float: left;
+	padding-left: 10%;
+}
+
+.footer-right {
+	float: right;
+	padding-right: 10%;
 }
 
 @media only screen and (max-width: 800px) {
-	html {
+	html, body {
 		font-size: 14px;
+		padding: 0 10px;
 	}
 	h1 {
 		font-size: 6rem;
@@ -247,12 +264,23 @@ footer > a {
 	#testimonial {
 		font-size: 1.1rem;
 	}
+	footer {
+		padding: 15px 0;
+		text-align: center;
+	}
+	footer > span {
+		display: block;
+		line-height: 2rem;
+	}
+	.footer-left, .footer-right {
+		float: none;
+		padding: 0;
+	}
 }
 
 @media only screen and (max-width: 640px) {
-	html {
+	html, body {
 		font-size: 13px;
-		padding: 0 2rem;
 	}
 	h1 {
 		font-size: 5rem;

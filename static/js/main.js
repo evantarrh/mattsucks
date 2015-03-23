@@ -5,7 +5,7 @@ $().ready(function() {
 	var data = document.querySelector('#data');
 	var first_name = data.dataset.firstname;
 	var urlstring = data.dataset.urlstring;
-	var page_color = data.dataset.backgroundcolor;
+	var page_color = "#FCA96A";
 	
 	var bad_testimonials = ["\"I've been hating on " + first_name + " for years. He totally sucks.\" - His Holiness the Dalai Lama",
 		"\"I only met him once, but yeah, " + first_name + " blows chunks.\" - Mary-Kate Olsen",
@@ -57,8 +57,14 @@ $().ready(function() {
 		$('h1, footer').css({
 			color: shade(page_color, 0.9)
 		});
-		//todo: all the other fucking colors
-
+		$('a').css({
+			color: page_color
+		});
+		$('a').mouseover(function(){
+			$(this).css({color: shade(page_color, 0.3)})
+		}).mouseout(function() {
+			$(this).css({color: page_color})			
+		});
 	}
 
 	function shade(color, percent) {   
