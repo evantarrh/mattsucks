@@ -54,6 +54,8 @@ def renderPage(urlstring):
 
 @app.route('/sendtext/<urlstring>', methods=["POST"])
 def sendText(urlstring):
+	db.incrementTextCount(urlstring)
+
 	#implement IP checking
 	info = db.getPage(urlstring)
 	message = client.messages.create(body="Hey " + info["first_name"] + "! You suck.",

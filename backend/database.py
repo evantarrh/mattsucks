@@ -26,7 +26,7 @@ def addPageToDB(urlstring, firstName, lastName, phone_number, background_color, 
 	return db.pages.insert(entry)
 
 
-def incrementPageCount(urlstring):
+def incrementTextCount(urlstring):
 	return db.pages.update({"urlstring" : urlstring}, { "$inc" : {"text_count" : 1}})
 
 def getPage(urlstring):
