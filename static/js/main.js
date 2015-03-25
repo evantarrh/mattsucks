@@ -96,6 +96,10 @@ $().ready(function() {
 
 	}, 6000);
 
+	$(".close").click(function() {
+		$(".alert-container").css({display: "none"});
+	})
+	
 	setColors();
 
 

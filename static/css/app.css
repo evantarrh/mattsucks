@@ -74,6 +74,23 @@ html, body {
 	line-height: 1.5rem;
 }
 
+.alert {
+	display: inline-block;
+	max-width: 85%;
+}
+
+.close {
+	display: inline-block;
+	position: absolute;
+	right: 25px;
+	float: right;
+}
+
+.close:hover {
+	color: #999;
+	cursor: pointer;
+}
+
 h1 {
 	color: #f0fafa;
 	font-size: 7rem;
@@ -270,6 +287,9 @@ footer > span > a {
 	.alert-container {
 		padding: 1rem 20px;
 		margin: 0 -20px;
+	}
+	.close {
+		right: 10px;
 	}
 	h1 {
 		font-size: 6rem;
