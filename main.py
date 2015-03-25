@@ -26,6 +26,7 @@ def hello():
 @app.route('/<urlstring>', methods=["GET"])
 def renderPage(urlstring):
 	info = db.getPage(urlstring)
+	show_alert = True if request.args.get('first_time') else False
 	return render_template("index.html", first_name = info["first_name"],
 					last_name = info["last_name"],
 					phone_number = info["phone_number"],
@@ -33,7 +34,8 @@ def renderPage(urlstring):
 					urlstring = info["urlstring"],
 					font = info["font"],
 					text_count = info["text_count"],
-					gender = info["gender"])
+					gender = info["gender"],
+					first_time = show_alert)
 
 
 @app.route('/sendtext/<urlstring>', methods=["POST"])
@@ -80,7 +82,7 @@ def createpage():
 					getColor(),
 					"comic sans ms")
 
-		return redirect('/' + name) # TODO: implement firsttime
+		return redirect(url_for('renderPage', urlstring=name, first_time=True)) # TODO: implement firsttime
 
 	#non valid form entry
 	elif request.method == "POST":

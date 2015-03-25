@@ -19,7 +19,7 @@ $().ready(function() {
 		}
 	}
 
-	var bad_testimonials = ["\"I've been hating on " + first_name + " for years. " + gender + " totally sucks.\" - His Holiness the Dalai Lama",
+	var bad_testimonials = ["\"I've been hating on " + first_name + " for years. Yeah, " + gender + " totally " + (gender === "they"? "suck" : "sucks") + ".\" - His Holiness the Dalai Lama",
 		"\"I only met " + gender_pronoun_alt_one(gender) + " once, but yeah, " + first_name + " blows chunks.\" - Mary-Kate Olsen",
 		"\"Please stop.\" - " + first_name,
 		"\"Sorry " + first_name + ". But you do suck.\" - Jackie Chan",
@@ -78,6 +78,10 @@ $().ready(function() {
 		}).mouseout(function() {
 			$(this).css({color: page_color})			
 		});
+		$('#text-count').css({
+			color: shade(page_color, -0.5),
+			background: page_color
+		})
 	}
 
 	function shade(color, percent) {   
@@ -99,7 +103,7 @@ $().ready(function() {
 	$(".close").click(function() {
 		$(".alert-container").css({display: "none"});
 	})
-	
+
 	setColors();
 
 

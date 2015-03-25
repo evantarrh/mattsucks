@@ -245,6 +245,21 @@ input[type=text], input[type=submit] {
 	color: #aaa;
 }
 
+
+#text-count {
+	position: fixed;
+	bottom: 6rem;
+	left: 0;
+	right: 0;
+	color: #666;
+	font-family: Montserrat, sans-serif;
+	width: 100%;
+}
+
+#number {
+	font-size: 3rem;
+}
+
 footer {
 	position: absolute;
 	font-size: 0.9rem;
@@ -297,6 +312,9 @@ footer > span > a {
 	}
 	#testimonial {
 		font-size: 1.1rem;
+	}
+	#text-count {
+		bottom: 7rem;
 	}
 	footer {
 		padding: 15px 0;

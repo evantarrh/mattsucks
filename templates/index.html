@@ -7,11 +7,14 @@
 	data-backgroundcolor="{{background_color}}"
 	data-font="{{font}}"
 	data-gender="{{gender}}"
+	data-textcount="{{text_count}}"
     data-urlstring = "{{urlstring}}"
     >
 
 </article>
 
+
+{% if first_time %}
 <div class="alert-container">
 	<div class="alert">
 		Nice! You've successfully created a page for {{first_name}}.
@@ -20,6 +23,7 @@
 		X
 	</div>
 </div>
+{% endif %}
 
 <h1>{{first_name}} sucks</h1>
 
@@ -32,6 +36,11 @@
 {% endif %}
 
 <div id="testimonial"></div>
+
+<div id="text-count">
+	<div id="number">{{text_count}}</div>
+	<div>texts have been sent to {{first_name}}'s phone.</div>
+</div>
 
 <script src="{{ url_for('static', filename='js/jquery-1.11.2.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
