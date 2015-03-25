@@ -16,28 +16,12 @@ app.secret_key = config.secret_key
 
 def getColor():
 	# ye olde arbitrarily selected list o' colors
-	colors = ["#fcbb85", "#fc8b7c", "#87cefa", "#5bbc74", "#8bbc55", "#c9ad7a", "#5f96e8", "#6bd2ff", "#52d1ac", "#e88d5d", "#b59ede", "#a2dec5", "#a4cbca", "#fca96a"]
+	colors = ["#fcbb85", "#fc8b7c", "#87cefa", "#5bbc74", "#8bbc55", "#5f96e8", "#6bd2ff", "#52d1ac", "#e88d5d", "#b59ede", "#a2dec5", "#a4cbca", "#fca96a", "f2dd54"]
 	return random.choice(colors)
 
 @app.route('/')
 def hello():
 	return render_template("index.html")
-
-@app.route('/mattsucks', methods=["POST"])
-def mattsucks():
-	message = client.messages.create(body="Hey Matt! You suck.",
-	to = config.matts_num,
-	from_ = config.twilio_num)
-	print message.sid
-	return "You told Matt he sucks!"
-
-@app.route('/mattrocks', methods=["POST"])
-def mattrocks():
-	message = client.messages.create(body="Aw geez! Sorry Matt. I hope all of your dreams come true.",
-	to = config.matts_num,
-	from_ = config.twilio_num)
-	print message.sid
-	return "Aw, that's nice."
 
 @app.route('/<urlstring>', methods=["GET"])
 def renderPage(urlstring):
@@ -80,8 +64,6 @@ def createpage():
 		if number[0] == "1":
 			number = number[1:]
 
-		#TODO: generate random color
-
 		base = name
 		counter = 1
 		while db.getPage(base) is not None:
@@ -98,7 +80,7 @@ def createpage():
 					getColor(),
 					"comic sans ms")
 
-		return redirect('/' + name)
+		return redirect('/' + name) # TODO: implement firsttime
 
 	#non valid form entry
 	elif request.method == "POST":

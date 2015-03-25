@@ -64,12 +64,22 @@ html, body {
 	-webkit-appearance: none;
 }
 
+.alert-container {
+	position: relative;
+	width: 100%;
+	font-family: Montserrat, sans-serif;
+	background-color: #fff;
+	padding: 1rem 40px;
+	margin: 0 -40px; /* offsets body&html padding */
+	line-height: 1.5rem;
+}
+
 h1 {
 	color: #f0fafa;
 	font-size: 7rem;
 	font-family: Montserrat, sans-serif;
 	font-weight: 700;
-	padding: 5rem 0 0;
+	padding: 3rem 0 0;
 	margin: 0;
 }
 
@@ -256,6 +266,10 @@ footer > span > a {
 	html, body {
 		font-size: 14px;
 		padding: 0 10px;
+	}
+	.alert-container {
+		padding: 1rem 20px;
+		margin: 0 -20px;
 	}
 	h1 {
 		font-size: 6rem;

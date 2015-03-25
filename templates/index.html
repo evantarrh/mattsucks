@@ -12,6 +12,14 @@
 
 </article>
 
+{% if first-time %}
+<div class="alert-container">
+	<div class="alert">
+		Nice! You've successfully created a page for {{first_name}}.
+	</div>
+</div>
+{% endif %}
+
 <h1>{{first_name}} sucks</h1>
 
 {% if gender == "they" %}
@@ -22,7 +30,7 @@
 	<button id="matt-sucks">Tell {{first_name}} {{gender}} sucks.</button>
 {% endif %}
 
-<div id="testimonial">"It's about time someone took him down a notch." - {{first_name}}'s mom</div>
+<div id="testimonial"></div>
 
 <script src="{{ url_for('static', filename='js/jquery-1.11.2.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
