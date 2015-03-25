@@ -32,10 +32,14 @@ $().ready(function() {
 		];
 
 	$("#matt-sucks").click(function(e) {
+		numclicks++;
 		window.clearInterval(buttonReset);
-		if(numclicks >= 3){
-			$('button').text("Cool your jets");
+		if(numclicks > 3){
+			$("button").text("Cool your jets man");
+			$("button").disabled = true;
 		}else{
+			$("#number").text(String(parseInt($("#number").html(), 10) + 1));
+
 			$.post("/sendtext/" + urlstring , function( response ){
 				console.dir(response);
 			});
