@@ -7,8 +7,6 @@ $().ready(function() {
 	var gender = data.dataset.gender;
 	var urlstring = data.dataset.urlstring;
 	var page_color = data.dataset.backgroundcolor;
-
-	console.log(page_color);
 	
 	function gender_pronoun_alt_one(gender_one) {
 		switch(gender_one) {
@@ -20,6 +18,13 @@ $().ready(function() {
 				return "them";
 		}
 	}
+
+	//+ Jonas Raoni Soares Silva
+	//@ http://jsfromhell.com/array/shuffle [v1.0]
+	function shuffle(o){ //v1.0
+	    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+	    return o;
+	};
 
 	var bad_testimonials = ["\"I've been hating on " + first_name + " for years\u2014" + gender + " totally " + (gender === "they"? "suck" : "sucks") + ".\" - His Holiness the Dalai Lama",
 		"\"I only met " + gender_pronoun_alt_one(gender) + " once, but yeah, " + first_name + " blows chunks.\" - Mary-Kate Olsen",
@@ -55,11 +60,28 @@ $().ready(function() {
 		first_name + " has feelings you know"
 		];
 
+	var testimonialCount = 0;
+	function getTestimonial() {
+		// if we've returned every element, shuffle the array
+		if (testimonialCount % bad_testimonials.length === 0) {
+			shuffle(bad_testimonials);
+		}
+		return bad_testimonials[testimonialCount++ % bad_testimonials.length];
+	}
+	
+	var coolantCount = 0;
+	function getCoolant() {
+		if (coolantCount % cool_your_jets.length === 0) {
+			shuffle(cool_your_jets);
+		}
+		return cool_your_jets[coolantCount++ % cool_your_jets.length];
+	}
+
 	$("#hater-button").click(function(e) {
 		numclicks++;
 		window.clearInterval(buttonReset);
 		if(numclicks > 3){
-			$("button").text(cool_your_jets[ Math.floor(Math.random() * cool_your_jets.length) ]);
+			$("button").text(getCoolant());
 			$("button").disabled = true;
 			$("button").css({
 				background: page_color,
@@ -139,7 +161,8 @@ $().ready(function() {
 		});
 		$('#text-count').css({
 			color: shade(page_color, -0.5),
-			background: page_color
+			background: page_color,
+			boxShadow: "0 20px " + page_color
 		})
 	}
 
@@ -154,7 +177,7 @@ $().ready(function() {
 	// updates testimonials w/ random new one every 6 seconds
 	setInterval(function() {
 		$("#testimonial").animate({'opacity': 0}, 1000, function(){
-			$(this).text(bad_testimonials[ Math.floor(Math.random() * bad_testimonials.length) ]);
+			$(this).text(getTestimonial());
 		}).animate({'opacity': 1}, 1000);
 
 	}, 6000);
