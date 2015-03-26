@@ -3,8 +3,13 @@
 {% block body %}
 
 {% if error %}
-<div class="error">
-	"you goofed. Try the form again"
+<div class="alert-container">
+    <div class="alert incorrect">
+        Whoops! Something went wrong. Try filling out the form again.
+    </div>
+    <div class="close">
+        X
+    </div>
 </div>
 {% endif %}
 
@@ -19,6 +24,7 @@
         <input type="submit" class="valid-submit" id="submit-button" value="Take 'em down a notch">
     </form>
 </div>
+
 
 <script src="{{ url_for('static', filename='js/form.js') }}"></script>
 
