@@ -19,7 +19,7 @@ $().ready(function() {
 		}
 	}
 
-	var bad_testimonials = ["\"I've been hating on " + first_name + " for years. Yeah, " + gender + " totally " + (gender === "they"? "suck" : "sucks") + ".\" - His Holiness the Dalai Lama",
+	var bad_testimonials = ["\"I've been hating on " + first_name + " for years\u2014" + gender + " totally " + (gender === "they"? "suck" : "sucks") + ".\" - His Holiness the Dalai Lama",
 		"\"I only met " + gender_pronoun_alt_one(gender) + " once, but yeah, " + first_name + " blows chunks.\" - Mary-Kate Olsen",
 		"\"Please stop.\" - " + first_name,
 		"\"Sorry " + first_name + ". But you do suck.\" - Jackie Chan",
@@ -31,14 +31,63 @@ $().ready(function() {
 		"\"It's about time someone took " + gender_pronoun_alt_one(gender) + " down a notch.\" – " + first_name + "'s mom"
 		];
 
-	$("#matt-sucks").click(function(e) {
+	var cool_your_jets = ["Cool your jets",
+		"Settle down now",
+		"Okay " + gender + " " + (gender === "they"? "get" : "gets")+ " it",
+		"That's quite enough",
+		"Alright be nice",
+		"Take a chill pill",
+		"Easy there skipper",
+		"Yikes",
+		"Too much hate",
+		"\u2639",
+		"Simmer down simmer down",
+		"Ease up",
+		"Now go make nice",
+		"Go hug someone or something",
+		"Okay cut it out",
+		"Stop that",
+		first_name + " has feelings you know"
+		];
+
+	$("#hater-button").click(function(e) {
 		numclicks++;
 		window.clearInterval(buttonReset);
 		if(numclicks > 3){
-			$("button").text("Cool your jets man");
+			$("button").text(cool_your_jets[ Math.floor(Math.random() * cool_your_jets.length) ]);
 			$("button").disabled = true;
-		}else{
+			$("button").css({
+				background: page_color,
+				border: "2px solid " + shade(page_color, 0.9),
+				cursor: "auto",
+				boxShadow: "none",
+				transform: "translate(3px, 3px)"
+			});
+			$("button").mouseover(function(){
+				$(this).css({
+					boxShadow: "none",
+					transform: "translate(3px, 3px)"
+				})
+			}).mouseout(function() {
+				$(this).css({
+					boxShadow: "none",
+					transform: "translate(3px, 3px)"
+				})			
+			});
+		} else {
 			$("#number").text(String(parseInt($("#number").html(), 10) + 1));
+			$("#number").css({
+				color: shade(page_color, 0.9)
+			});
+
+		    setTimeout(function(){
+		    	$('#number').fadeOut(400, function() {
+		       		$(this).css({
+		       			color: shade(page_color, -0.4)
+		       		}).fadeIn(400);
+		  		});
+		  	}, 1250);
+
 
 			$.post("/sendtext/" + urlstring , function( response ){
 				console.dir(response);
