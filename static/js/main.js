@@ -151,7 +151,7 @@ $().ready(function() {
         $('h1, footer').css({
             color: shade(page_color, 0.9)
         });
-        $('a, .alert').css({
+        $('a, .alert, #link-container').css({
             color: page_color
         });
         $('a').mouseover(function(){
@@ -188,26 +188,31 @@ $().ready(function() {
 
     setColors();
 
-    // binds to both the button click and the escape key to close the modal window
     function modalClose ( event ) {
-        if (!event.keyCode || event.keyCode === 27) {
-            console.log('huh');
-            $("#modal-backdrop").fadeOut(200, function() {
-                $(this).css({display: 'none'});
-            });
-        }
+        $("#modal-backdrop").fadeOut(200, function() {
+            $(this).css({display: 'none'});
+        });
     }
 
-    // Close modal by clicking on the overlay
-    $("#modal-backdrop").click(function( e ) {
-        if (e.target == document.getElementById("modal").parentNode) {
-            modalClose( e );
-        }
-    });
+    //can only close after 1.5sec
+    setTimeout(function() {
+        // close modal by clicking on X
+        $("#modal-close").click(modalClose);
 
-    $("#modal").click(function(e) {;});
+        // close modal by clicking on the overlay
+        $("#modal-backdrop").click(function( e ) {
+            if (e.target == document.getElementById("modal").parentNode) {
+                modalClose( e );
+            }
+        });
 
-    $("#modal-close").click(modalClose);
-
+        // close modal with escape key
+        $(document).keyup(function(e) { 
+            console.log('hi');
+            if (e.keyCode == 27) { 
+                modalClose(e);
+            } 
+        });
+    }, 1500);
 
 });
