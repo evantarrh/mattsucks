@@ -1,192 +1,213 @@
 $().ready(function() {
-	var buttonReset;
-	var numclicks = 0;
+    var buttonReset;
+    var numclicks = 0;
 
-	var data = document.querySelector('#data');
-	var first_name = data.dataset.firstname;
-	var gender = data.dataset.gender;
-	var urlstring = data.dataset.urlstring;
-	var page_color = data.dataset.backgroundcolor;
-	
-	function gender_pronoun_alt_one(gender_one) {
-		switch(gender_one) {
-			case ("he"):
-				return "him";
-			case ("she"):
-				return "her";
-			default:
-				return "them";
-		}
-	}
+    var data = document.querySelector('#data');
+    var first_name = data.dataset.firstname;
+    var gender = data.dataset.gender;
+    var urlstring = data.dataset.urlstring;
+    var page_color = data.dataset.backgroundcolor;
+    
+    function gender_pronoun_alt_one(gender_one) {
+        switch(gender_one) {
+            case ("he"):
+                return "him";
+            case ("she"):
+                return "her";
+            default:
+                return "them";
+        }
+    }
 
-	//+ Jonas Raoni Soares Silva
-	//@ http://jsfromhell.com/array/shuffle [v1.0]
-	function shuffle(o){ //v1.0
-	    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-	    return o;
-	};
+    //+ Jonas Raoni Soares Silva
+    //@ http://jsfromhell.com/array/shuffle [v1.0]
+    function shuffle(o){ //v1.0
+        for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+        return o;
+    };
 
-	var bad_testimonials = ["\"I've been hating on " + first_name + " for years\u2014" + gender + " totally " + (gender === "they"? "suck" : "sucks") + ".\" - His Holiness the Dalai Lama",
-		"\"I only met " + gender_pronoun_alt_one(gender) + " once, but yeah, " + first_name + " blows chunks.\" - Mary-Kate Olsen",
-		"\"Please stop.\" - " + first_name,
-		"\"Sorry " + first_name + ". But you do suck.\" - Jackie Chan",
-		"\"" + first_name + " Is A Huge Weenie, And We All Know It\" - Jaden Smith",
-		"\"Shut up, " + first_name + ".\" - Tom Hanks",
-		"\"I visited Columbia yesterday, and " + first_name + " is the reason I'm not coming here.\" - Malia Obama",
-		"\"" + first_name + " has a lot of opinions, and all of them are bad.\" - Morgan Freeman",
-		"\"" + first_name + "? What a bag.\" - Former President Ronald Reagan",
-		"\"I don't think anyone has ever liked " + first_name + ".\" - Dwayne \"The Rock\" Johnson",
-		"\"Oh man, " + first_name + " tooootally sucks.\" - Justin Timberlake",
-		"\"I've been to rehab 7 times, and even I know " + first_name + " needs help.\" - Lindsay Lohan",
-		"\"It's about time someone took " + gender_pronoun_alt_one(gender) + " down a notch.\" – " + first_name + "'s mom"
-		];
+    var bad_testimonials = ["\"I've been hating on " + first_name + " for years\u2014" + gender + " totally " + (gender === "they"? "suck" : "sucks") + ".\" - His Holiness the Dalai Lama",
+        "\"I only met " + gender_pronoun_alt_one(gender) + " once, but yeah, " + first_name + " blows chunks.\" - Mary-Kate Olsen",
+        "\"Please stop.\" - " + first_name,
+        "\"Sorry " + first_name + ". But you do suck.\" - Jackie Chan",
+        "\"" + first_name + " Is A Huge Weenie, And We All Know It\" - Jaden Smith",
+        "\"Shut up, " + first_name + ".\" - Tom Hanks",
+        "\"I visited Columbia yesterday, and " + first_name + " is the reason I'm not coming here.\" - Malia Obama",
+        "\"" + first_name + " has a lot of opinions, and all of them are bad.\" - Morgan Freeman",
+        "\"" + first_name + "? What a bag.\" - Former President Ronald Reagan",
+        "\"I don't think anyone has ever liked " + first_name + ".\" - Dwayne \"The Rock\" Johnson",
+        "\"Oh man, " + first_name + " tooootally sucks.\" - Justin Timberlake",
+        "\"I've been to rehab 7 times, and even I know " + first_name + " needs help.\" - Lindsay Lohan",
+        "\"It's about time someone took " + gender_pronoun_alt_one(gender) + " down a notch.\" – " + first_name + "'s mom"
+        ];
 
-	var cool_your_jets = ["Cool your jets",
-		"Settle down now",
-		"Okay " + gender + " " + (gender === "they"? "get" : "gets")+ " it",
-		"That's quite enough",
-		"Alright be nice",
-		"Take a chill pill",
-		"Easy there skipper",
-		"Yikes",
-		"Too much hate",
-		"\u2639",
-		"Simmer down simmer down",
-		"Ease up",
-		"Now go make nice",
-		"Go hug someone or something",
-		"Okay cut it out",
-		"Stop that",
-		first_name + " has feelings you know"
-		];
+    var cool_your_jets = ["Cool your jets",
+        "Settle down now",
+        "Okay " + gender + " " + (gender === "they"? "get" : "gets")+ " it",
+        "That's quite enough",
+        "Alright be nice",
+        "Take a chill pill",
+        "Easy there skipper",
+        "Yikes",
+        "Too much hate",
+        "\u2639",
+        "Simmer down simmer down",
+        "Ease up",
+        "Now go make nice",
+        "Go hug someone or something",
+        "Okay cut it out",
+        "Stop that",
+        first_name + " has feelings you know"
+        ];
 
-	var testimonialCount = 0;
-	function getTestimonial() {
-		// if we've returned every element, shuffle the array
-		if (testimonialCount % bad_testimonials.length === 0) {
-			shuffle(bad_testimonials);
-		}
-		return bad_testimonials[testimonialCount++ % bad_testimonials.length];
-	}
-	
-	var coolantCount = 0;
-	function getCoolant() {
-		if (coolantCount % cool_your_jets.length === 0) {
-			shuffle(cool_your_jets);
-		}
-		return cool_your_jets[coolantCount++ % cool_your_jets.length];
-	}
+    var testimonialCount = 0;
+    function getTestimonial() {
+        // if we've returned every element, shuffle the array
+        if (testimonialCount % bad_testimonials.length === 0) {
+            shuffle(bad_testimonials);
+        }
+        return bad_testimonials[testimonialCount++ % bad_testimonials.length];
+    }
+    
+    var coolantCount = 0;
+    function getCoolant() {
+        if (coolantCount % cool_your_jets.length === 0) {
+            shuffle(cool_your_jets);
+        }
+        return cool_your_jets[coolantCount++ % cool_your_jets.length];
+    }
 
-	$("#hater-button").click(function(e) {
-		numclicks++;
-		window.clearInterval(buttonReset);
-		if(numclicks > 3){
-			$("button").text(getCoolant());
-			$("button").disabled = true;
-			$("button").css({
-				background: page_color,
-				border: "2px solid " + shade(page_color, 0.9),
-				cursor: "auto",
-				boxShadow: "none",
-				transform: "translate(3px, 3px)"
-			});
-			$("button").mouseover(function(){
-				$(this).css({
-					boxShadow: "none",
-					transform: "translate(3px, 3px)"
-				})
-			}).mouseout(function() {
-				$(this).css({
-					boxShadow: "none",
-					transform: "translate(3px, 3px)"
-				})			
-			});
-			$("h2").text("And " + gender + " definitely " + (gender === "they"? "know" : "knows") +" it! That's enough texts for now...")
-		} else {
-			$("#number").text(String(parseInt($("#number").html(), 10) + 1));
-			$("#number").css({
-				color: shade(page_color, 0.9)
-			});
+    $("#hater-button").click(function(e) {
+        numclicks++;
+        window.clearInterval(buttonReset);
+        if(numclicks > 3){
+            $("button").text(getCoolant());
+            $("button").disabled = true;
+            $("button").css({
+                background: page_color,
+                border: "2px solid " + shade(page_color, 0.9),
+                cursor: "auto",
+                boxShadow: "none",
+                transform: "translate(3px, 3px)"
+            });
+            $("button").mouseover(function(){
+                $(this).css({
+                    boxShadow: "none",
+                    transform: "translate(3px, 3px)"
+                })
+            }).mouseout(function() {
+                $(this).css({
+                    boxShadow: "none",
+                    transform: "translate(3px, 3px)"
+                })          
+            });
+            $("h2").text("And " + gender + " definitely " + (gender === "they"? "know" : "knows") +" it! That's enough texts for now...")
+        } else {
+            $("#number").text(String(parseInt($("#number").html(), 10) + 1));
+            $("#number").css({
+                color: shade(page_color, 0.9)
+            });
 
-		    setTimeout(function(){
-		    	$('#number').fadeOut(400, function() {
-		       		$(this).css({
-		       			color: shade(page_color, -0.4)
-		       		}).fadeIn(400);
-		  		});
-		  	}, 1250);
+            setTimeout(function(){
+                $('#number').fadeOut(400, function() {
+                    $(this).css({
+                        color: shade(page_color, -0.4)
+                    }).fadeIn(400);
+                });
+            }, 1250);
 
 
-			$.post("/sendtext/" + urlstring , function( response ){
-				console.dir(response);
-			});
-			
-			$("button").fadeIn(function() {
-				$(this).text("Nice! You told " + first_name + " " + gender + " " + (gender === "they"? "suck" : "sucks") + ".");
-				$(this).css("color", shade(page_color, -0.4));
-			});
-			buttonReset = setTimeout(function() {
-				$("button").fadeIn(function() {
-					$(this).text("Tell " + first_name + " " + gender + " " + (gender === "they"? "suck" : "sucks") + ".");
-					$(this).css("color", page_color);
-				});
-			}, 4000);
-		}
-	});
+            $.post("/sendtext/" + urlstring , function( response ){
+                console.dir(response);
+            });
+            
+            $("button").fadeIn(function() {
+                $(this).text("Nice! You told " + first_name + " " + gender + " " + (gender === "they"? "suck" : "sucks") + ".");
+                $(this).css("color", shade(page_color, -0.4));
+            });
+            buttonReset = setTimeout(function() {
+                $("button").fadeIn(function() {
+                    $(this).text("Tell " + first_name + " " + gender + " " + (gender === "they"? "suck" : "sucks") + ".");
+                    $(this).css("color", page_color);
+                });
+            }, 4000);
+        }
+    });
 
-	function setColors() {
-		$('body,html').css({
-			background: page_color
-		});
-		$('button').css({
-			color: page_color,
-			background: shade(page_color, 0.9),
-			boxShadow: "6px 6px 2px" + shade(page_color, -0.2)
-		});
-		$('button').mouseover(function(){
-			$(this).css({boxShadow: "3px 3px 1px" + shade(page_color, -0.3)})
-		}).mouseout(function() {
-			$(this).css({boxShadow: "6px 6px 2px" + shade(page_color, -0.2)})			
-		});
-		$('h1, footer').css({
-			color: shade(page_color, 0.9)
-		});
-		$('a, .alert').css({
-			color: page_color
-		});
-		$('a').mouseover(function(){
-			$(this).css({color: shade(page_color, 0.3)})
-		}).mouseout(function() {
-			$(this).css({color: page_color})			
-		});
-		$('#text-count').css({
-			color: shade(page_color, -0.5),
-			background: page_color,
-			boxShadow: "0 20px " + page_color
-		})
-	}
+    function setColors() {
+        $('body,html').css({
+            background: page_color
+        });
+        $('button').css({
+            color: page_color,
+            background: shade(page_color, 0.9),
+            boxShadow: "6px 6px 2px" + shade(page_color, -0.2)
+        });
+        $('button').mouseover(function(){
+            $(this).css({boxShadow: "3px 3px 1px" + shade(page_color, -0.3)})
+        }).mouseout(function() {
+            $(this).css({boxShadow: "6px 6px 2px" + shade(page_color, -0.2)})           
+        });
+        $('h1, footer').css({
+            color: shade(page_color, 0.9)
+        });
+        $('a, .alert').css({
+            color: page_color
+        });
+        $('a').mouseover(function(){
+            $(this).css({color: shade(page_color, 0.3)})
+        }).mouseout(function() {
+            $(this).css({color: page_color})            
+        });
+        $('#text-count').css({
+            color: shade(page_color, -0.5),
+            background: page_color,
+            boxShadow: "0 20px " + page_color
+        })
+    }
 
-	function shade(color, percent) {   
-	    var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;
-	    return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1);
-	}
+    function shade(color, percent) {   
+        var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;
+        return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1);
+    }
 
-	// gives testimonial a default value
-	$("#testimonial").text(bad_testimonials[ Math.floor(Math.random() * bad_testimonials.length) ]);
+    // gives testimonial a default value
+    $("#testimonial").text(bad_testimonials[ Math.floor(Math.random() * bad_testimonials.length) ]);
 
-	// updates testimonials w/ random new one every 6 seconds
-	setInterval(function() {
-		$("#testimonial").animate({'opacity': 0}, 1000, function(){
-			$(this).text(getTestimonial());
-		}).animate({'opacity': 1}, 1000);
+    // updates testimonials w/ random new one every 6 seconds
+    setInterval(function() {
+        $("#testimonial").animate({'opacity': 0}, 1000, function(){
+            $(this).text(getTestimonial());
+        }).animate({'opacity': 1}, 1000);
 
-	}, 6000);
+    }, 6000);
 
-	$(".close").click(function() {
-		$(".alert-container").css({display: "none"});
-	})
+    $(".close").click(function() {
+        $(".alert-container").css({display: "none"});
+    })
 
-	setColors();
+    setColors();
+
+    // binds to both the button click and the escape key to close the modal window
+    function modalClose ( event ) {
+        if (!event.keyCode || event.keyCode === 27) {
+            console.log('huh');
+            $("#modal-backdrop").fadeOut(200, function() {
+                $(this).css({display: 'none'});
+            });
+        }
+    }
+
+    // Close modal by clicking on the overlay
+    $("#modal-backdrop").click(function( e ) {
+        if (e.target == document.getElementById("modal").parentNode) {
+            modalClose( e );
+        }
+    });
+
+    $("#modal").click(function(e) {;});
+
+    $("#modal-close").click(modalClose);
 
 
 });

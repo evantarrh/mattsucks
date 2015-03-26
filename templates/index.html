@@ -12,14 +12,15 @@
     >
 </article>
 
-
 {% if first_time %}
-<div class="alert-container">
-	<div class="alert">
-		Nice! You've successfully created a page for {{first_name}}.
-	</div>
-	<div class="close">
-		X
+<div id="modal-backdrop">
+	<div id="modal">
+		<div class="close" id="modal-close">
+			&times;
+		</div>
+		<div class="modal-info">
+			Nice! You've successfully created a page for {{first_name}}.
+		</div>
 	</div>
 </div>
 {% endif %}
