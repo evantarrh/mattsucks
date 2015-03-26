@@ -28,6 +28,9 @@ $().ready(function() {
 		"\"I visited Columbia yesterday, and " + first_name + " is the reason I'm not coming here.\" - Malia Obama",
 		"\"" + first_name + " has a lot of opinions, and all of them are bad.\" - Morgan Freeman",
 		"\"" + first_name + "? What a bag.\" - Former President Ronald Reagan",
+		"\"I don't think anyone has ever liked " + first_name + ".\" - Dwayne \"The Rock\" Johnson",
+		"\"Oh man, " + first_name + " tooootally sucks.\" - Justin Timberlake",
+		"\"I've been to rehab 7 times, and even I know " + first_name + " needs help.\" - Lindsay Lohan",
 		"\"It's about time someone took " + gender_pronoun_alt_one(gender) + " down a notch.\" – " + first_name + "'s mom"
 		];
 
@@ -74,6 +77,7 @@ $().ready(function() {
 					transform: "translate(3px, 3px)"
 				})			
 			});
+			$("h2").text("And " + gender + " definitely " + (gender === "they"? "know" : "knows") +" it! That's enough texts for now...")
 		} else {
 			$("#number").text(String(parseInt($("#number").html(), 10) + 1));
 			$("#number").css({
@@ -94,12 +98,12 @@ $().ready(function() {
 			});
 			
 			$("button").fadeIn(function() {
-				$(this).text("Nice! You told " + first_name + " he sucks.");
+				$(this).text("Nice! You told " + first_name + " " + gender + " sucks.");
 				$(this).css("color", shade(page_color, -0.4));
 			});
 			buttonReset = setTimeout(function() {
 				$("button").fadeIn(function() {
-					$(this).text("Tell " + first_name + " he sucks.");
+					$(this).text("Tell " + first_name + " " + gender + " sucks.");
 					$(this).css("color", page_color);
 				});
 			}, 4000);

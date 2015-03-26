@@ -1,5 +1,5 @@
 from twilio.rest import TwilioRestClient
-from flask import Flask, render_template, request, jsonify, url_for, redirect
+from flask import Flask, render_template, request, jsonify, url_for, redirect, make_response
 from backend import database as db
 from backend import config
 from backend import form as createForm
@@ -26,8 +26,11 @@ def hello():
 @app.route('/<urlstring>', methods=["GET"])
 def renderPage(urlstring):
 	info = db.getPage(urlstring)
-	show_alert = True if request.args.get('first_time') else False
-	return render_template("index.html", first_name = info["first_name"],
+	show_alert = False
+	if request.cookies.get('alert') == "yes":
+		show_alert = True
+
+	resp = make_response(render_template("index.html", first_name = info["first_name"],
 					last_name = info["last_name"],
 					phone_number = info["phone_number"],
 					background_color = info["background_color"],
@@ -35,7 +38,9 @@ def renderPage(urlstring):
 					font = info["font"],
 					text_count = info["text_count"],
 					gender = info["gender"],
-					first_time = show_alert)
+					first_time = show_alert))
+	resp.set_cookie('alert', 'no')
+	return resp
 
 
 @app.route('/sendtext/<urlstring>', methods=["POST"])
@@ -82,7 +87,10 @@ def createpage():
 					getColor(),
 					"comic sans ms")
 
-		return redirect(url_for('renderPage', urlstring=name, first_time=True)) # TODO: implement firsttime
+		resp = make_response(redirect(url_for('renderPage', urlstring=name)))
+		resp.set_cookie('alert', 'yes')
+		return resp
+		#return redirect(url_for('renderPage', urlstring=name, first_time=True)) # TODO: implement firsttime
 
 	#non valid form entry
 	elif request.method == "POST":
