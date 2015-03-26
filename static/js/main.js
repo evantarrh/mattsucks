@@ -7,6 +7,8 @@ $().ready(function() {
 	var gender = data.dataset.gender;
 	var urlstring = data.dataset.urlstring;
 	var page_color = data.dataset.backgroundcolor;
+
+	console.log(page_color);
 	
 	function gender_pronoun_alt_one(gender_one) {
 		switch(gender_one) {
@@ -98,12 +100,12 @@ $().ready(function() {
 			});
 			
 			$("button").fadeIn(function() {
-				$(this).text("Nice! You told " + first_name + " " + gender + " sucks.");
+				$(this).text("Nice! You told " + first_name + " " + gender + " " + (gender === "they"? "suck" : "sucks") + ".");
 				$(this).css("color", shade(page_color, -0.4));
 			});
 			buttonReset = setTimeout(function() {
 				$("button").fadeIn(function() {
-					$(this).text("Tell " + first_name + " " + gender + " sucks.");
+					$(this).text("Tell " + first_name + " " + gender + " " + (gender === "they"? "suck" : "sucks") + ".");
 					$(this).css("color", page_color);
 				});
 			}, 4000);
