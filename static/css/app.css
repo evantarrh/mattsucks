@@ -166,7 +166,6 @@ h2 {
 	font-style: italic;
 	font-size: 1.4rem;
 	line-height: 1.8rem;
-	height: 2rem;
 	margin: 0 0 3rem;
 }
 
@@ -287,6 +286,7 @@ input[type=text], input[type=submit] {
 
 .invalid-submit {
 	background-color: #ccc;
+	cursor: auto;
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */
@@ -406,6 +406,9 @@ footer > span > a {
 		font-size: 1.3rem;
 		line-height: 1.9rem;
 	}
+	#modal {
+		top: 0;
+	}
 }
 
 @media only screen and (max-width: 480px) {	
@@ -414,6 +417,10 @@ footer > span > a {
 	}
 	#splash-link {
 		font-size: 1.8rem;
+	}
+	#submit-button {
+		display: inline; /* instead of none */
+		opacity: 1;
 	}
 }
 

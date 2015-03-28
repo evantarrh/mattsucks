@@ -1,11 +1,20 @@
 window.onload = function() {
     var hasBeenValid = false;
+    var submitButton = document.getElementById("submit-button");
+
+    //otherwise janky on mobile
+    if (window.innerWidth < 600) {
+        submitButton.removeAttribute("class", "valid-submit");
+        submitButton.setAttribute("class", "invalid-submit");
+        submitButton.style.visibility = "visible";
+        submitButton.style.opacity = 1;
+        submitButton.disabled = true;
+    }
 
     function nameValidation() {
         var firstName = document.getElementById("first_name");
         var lastName = document.getElementById("last_name");
         var phoneNumber = document.getElementById("phone_number");
-        var submitButton = document.getElementById("submit-button");
 
         var isFirstNameValid = false;
         var isLastNameValid = false;
@@ -52,8 +61,6 @@ window.onload = function() {
             submitButton.setAttribute("class", "invalid-submit");
             submitButton.disabled = true;
         }
-
-
     }
 
     function phoneValidation(phoneInput) {

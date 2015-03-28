@@ -1,5 +1,6 @@
 from twilio.rest import TwilioRestClient
 from flask import Flask, render_template, request, jsonify, url_for, redirect, make_response
+from flask_limiter import Limiter
 from backend import database as db
 from backend import config
 from backend import form as createForm
@@ -8,6 +9,7 @@ import re, random
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
+limiter = Limiter(app)
 
 account_sid = config.acct_sid
 auth_token  = config.token
@@ -44,17 +46,21 @@ def renderPage(urlstring):
 
 
 @app.route('/sendtext/<urlstring>', methods=["POST"])
+@limiter.limit("10 per hour")
 def sendText(urlstring):
 	db.incrementTextCount(urlstring)
 
 	#implement IP checking
 	info = db.getPage(urlstring)
+	if info["text_count"] >= 5:
+		intro_message = client.messages.create(body="You're getting these texts because someone thought you needed to be taken down a notch: downanotch.co. Reply STOP and we'll shut up.",
+		to = info["phone_number"],
+		from_ = config.twilio_num)
+
 	message = client.messages.create(body="Hey " + info["first_name"] + "! You suck.",
 	to = info["phone_number"],
 	from_ = config.twilio_num)
-	print message.sid
-	return "You told matt that he sucks"
-
+	return "Success! Message " + message.sid + " was sent to " + info["first_name"] + "."
 
 
 @app.route('/create', methods=["GET", "POST"])
@@ -104,4 +110,4 @@ def createpage():
 
 
 if __name__ == '__main__':
-	app.run(host="0.0.0.0")
+	app.run(host="0.0.0.0", port=5001)

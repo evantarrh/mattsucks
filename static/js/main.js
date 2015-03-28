@@ -1,6 +1,7 @@
 $().ready(function() {
     var buttonReset;
     var numclicks = 0;
+    var rateLimited = false;
 
     var data = document.querySelector('#data');
     var first_name = data.dataset.firstname;
@@ -77,10 +78,7 @@ $().ready(function() {
         return cool_your_jets[coolantCount++ % cool_your_jets.length];
     }
 
-    $("#hater-button").click(function(e) {
-        numclicks++;
-        window.clearInterval(buttonReset);
-        if(numclicks > 3){
+    function simmerDown() {
             $("button").text(getCoolant());
             $("button").disabled = true;
             $("button").css({
@@ -88,7 +86,8 @@ $().ready(function() {
                 border: "2px solid " + shade(page_color, 0.9),
                 cursor: "auto",
                 boxShadow: "none",
-                transform: "translate(3px, 3px)"
+                transform: "translate(3px, 3px)",
+                color: shade(page_color, -0.4)
             });
             $("button").mouseover(function(){
                 $(this).css({
@@ -101,36 +100,51 @@ $().ready(function() {
                     transform: "translate(3px, 3px)"
                 })          
             });
+    }
+
+    $("#hater-button").click(function(e) {
+        numclicks++;
+        window.clearInterval(buttonReset);
+
+        if(numclicks > 3 && !rateLimited){
+            simmerDown();
             $("h2").text("And " + gender + " definitely " + (gender === "they"? "know" : "knows") +" it! That's enough texts for now...")
         } else {
-            $("#number").text(String(parseInt($("#number").html(), 10) + 1));
-            $("#number").css({
-                color: shade(page_color, 0.9)
-            });
-
-            setTimeout(function(){
-                $('#number').fadeOut(400, function() {
-                    $(this).css({
-                        color: shade(page_color, -0.4)
-                    }).fadeIn(400);
-                });
-            }, 1250);
-
-
-            $.post("/sendtext/" + urlstring , function( response ){
-                console.dir(response);
-            });
-            
-            $("button").fadeIn(function() {
-                $(this).text("Nice! You told " + first_name + " " + gender + " " + (gender === "they"? "suck" : "sucks") + ".");
-                $(this).css("color", shade(page_color, -0.4));
-            });
-            buttonReset = setTimeout(function() {
+            $.post("/sendtext/" + urlstring , function( data, textStatus, jqXHR ){
+                // success, update button
                 $("button").fadeIn(function() {
-                    $(this).text("Tell " + first_name + " " + gender + " " + (gender === "they"? "suck" : "sucks") + ".");
-                    $(this).css("color", page_color);
+                    $(this).text("Nice! You told " + first_name + " " + gender + " " + (gender === "they"? "suck" : "sucks") + ".");
+                    $(this).css("color", shade(page_color, -0.4));
                 });
-            }, 4000);
+                buttonReset = setTimeout(function() {
+                    $("button").fadeIn(function() {
+                        $(this).text("Tell " + first_name + " " + gender + " " + (gender === "they"? "suck" : "sucks") + ".");
+                        $(this).css("color", page_color);
+                    });
+                }, 4000);
+
+                // update number at bottom of page
+                $("#number").text(String(parseInt($("#number").html(), 10) + 1));
+                $("#number").css({
+                    color: shade(page_color, 0.9)
+                });
+                setTimeout(function(){
+                    $('#number').fadeOut(400, function() {
+                        $(this).css({
+                            color: shade(page_color, -0.4)
+                        }).fadeIn(400);
+                    });
+                }, 1250);
+
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                // get rate limited bitch
+                if (errorThrown === "TOO MANY REQUESTS") {
+                    rateLimited = true;
+                    $("h2").text("You've been sending too many texts! Come back later\u2014or tell your friends.");
+                    simmerDown();
+                }
+            });
+
         }
     });
 
@@ -208,7 +222,6 @@ $().ready(function() {
 
         // close modal with escape key
         $(document).keyup(function(e) { 
-            console.log('hi');
             if (e.keyCode == 27) { 
                 modalClose(e);
             } 
