@@ -229,6 +229,8 @@ $().ready(function() {
         });
     }, 1500);
 
+    // adding in text-count to footer & correcting padding
     $('footer').append('<div id="text-count"><div id="number">' + text_count + '</div><div>texts have been sent to ' + first_name + '\'s phone.</div></div>');
+    $('.content').css({paddingBottom: "180px"});
 
 });

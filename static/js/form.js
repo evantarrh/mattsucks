@@ -73,8 +73,10 @@ window.onload = function() {
 
     window.setInterval(nameValidation, 100);
 
-    document.getElementById("alert-close").addEventListener("click", function() {
-        (document.getElementsByClassName("alert-container"))[0].style.display = "none";
-    })
-
+    var alertClose = document.getElementById("alert-close");
+    if (alertClose !== null) {
+        alertClose.addEventListener("click", function() {
+            (document.getElementsByClassName("alert-container"))[0].style.display = "none";
+        })
+    }
 }
