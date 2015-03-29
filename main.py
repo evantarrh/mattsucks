@@ -23,11 +23,13 @@ def getColor():
 
 @app.route('/')
 def hello():
-	return render_template("index.html")
+	return redirect("/create")
 
 @app.route('/<urlstring>', methods=["GET"])
 def renderPage(urlstring):
 	info = db.getPage(urlstring)
+	print info
+
 	show_alert = False
 	if request.cookies.get('alert') == "yes":
 		show_alert = True
@@ -46,7 +48,7 @@ def renderPage(urlstring):
 
 
 @app.route('/sendtext/<urlstring>', methods=["POST"])
-@limiter.limit("10 per hour")
+@limiter.limit("20/hour;7/minute")
 def sendText(urlstring):
 	db.incrementTextCount(urlstring)
 
@@ -96,7 +98,6 @@ def createpage():
 		resp = make_response(redirect(url_for('renderPage', urlstring=name)))
 		resp.set_cookie('alert', 'yes')
 		return resp
-		#return redirect(url_for('renderPage', urlstring=name, first_time=True)) # TODO: implement firsttime
 
 	#non valid form entry
 	elif request.method == "POST":

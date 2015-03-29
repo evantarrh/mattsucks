@@ -2,15 +2,6 @@ window.onload = function() {
     var hasBeenValid = false;
     var submitButton = document.getElementById("submit-button");
 
-    //otherwise janky on mobile
-    if (window.innerWidth < 600) {
-        submitButton.removeAttribute("class", "valid-submit");
-        submitButton.setAttribute("class", "invalid-submit");
-        submitButton.style.visibility = "visible";
-        submitButton.style.opacity = 1;
-        submitButton.disabled = true;
-    }
-
     function nameValidation() {
         var firstName = document.getElementById("first_name");
         var lastName = document.getElementById("last_name");
@@ -46,9 +37,7 @@ window.onload = function() {
         if (isPhoneValid && isFirstNameValid && isLastNameValid) {
             submitButton.disabled = false;
             if (!hasBeenValid) {
-                hasBeenValid = true;
-                submitButton.style.visibility = "visible";
-                submitButton.style.opacity = 1;                
+                hasBeenValid = true;              
             }
             else {
                 submitButton.removeAttribute("class", "invalid-submit");

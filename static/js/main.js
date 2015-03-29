@@ -8,6 +8,7 @@ $().ready(function() {
     var gender = data.dataset.gender;
     var urlstring = data.dataset.urlstring;
     var page_color = data.dataset.backgroundcolor;
+    var text_count = data.dataset.textcount;
     
     function gender_pronoun_alt_one(gender_one) {
         switch(gender_one) {
@@ -175,8 +176,7 @@ $().ready(function() {
         });
         $('#text-count').css({
             color: shade(page_color, -0.5),
-            background: page_color,
-            boxShadow: "0 20px " + page_color
+            background: page_color
         })
     }
 
@@ -227,5 +227,7 @@ $().ready(function() {
             } 
         });
     }, 1500);
+
+    $('footer').append('<div id="text-count"><div id="number">' + text_count + '</div><div>texts have been sent to ' + first_name + '\'s phone.</div></div>');
 
 });

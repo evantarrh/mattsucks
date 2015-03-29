@@ -64,6 +64,15 @@ html, body {
 	-webkit-appearance: none;
 }
 
+.wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+.content {
+    padding-bottom: 80px; /* Height of footer */
+}
+
 .alert-container {
 	position: relative;
 	width: 100%;
@@ -118,7 +127,7 @@ html, body {
 	transition: transform .3s;
 	width: 100%;
 	font-family: Montserrat, sans-serif;
-	color: #666;
+	color: #666; /* ▐  ⊙ ▃ ⊙ ▐ */
 	top: -15%;
 }
 
@@ -159,6 +168,11 @@ h1 {
 	margin: 0;
 }
 
+#create-title {
+	font-size: 3.5rem;
+	padding: 2rem 0 1rem;
+}
+
 h2 {
 	color: #f0fafa;
 	font-family: Merriweather, serif;
@@ -166,14 +180,22 @@ h2 {
 	font-style: italic;
 	font-size: 1.4rem;
 	line-height: 1.8rem;
-	margin: 0 0 3rem;
+	margin: 0 0 2rem;
+}
+
+#create-info {
+	margin: auto;
+	font-family: Merriweather, serif;
+	color: #666; /* ▐  ⊙ ▃ ⊙ ▐ */
+	max-width: 600px;
+	line-height: 1.5rem;
 }
 
 button {
 	font-size: 20px;
 	border: 1px;
 	padding: 1rem 3rem;
-	margin: 0 0 3rem;
+	margin: 1rem 0 3rem;
 	word-spacing: 2px;
 	font-family: Montserrat, sans-serif;
 	box-shadow: 6px 6px 2px #7ad;
@@ -196,16 +218,15 @@ button:hover {
 	color: #666; /* ▐  ⊙ ▃ ⊙ ▐ */
 }
 
-form-container {
+.form-container {
 	width: 100%;
 	text-align: center;
-	padding: 50px;
 }
 
 form {
 	font-family: Montserrat, sans-serif;
 	font-weight: 400px;
-	margin: 50px 30px 0 0;
+	margin: 30px 30px 0 0;
 	width: 300px;
 	display: inline-block;
 	-webkit-appearance: none;
@@ -260,8 +281,6 @@ input[type=text], input[type=submit] {
 }
 
 #submit-button {
-	visibility: hidden;
-	opacity: 0;
 	border: 0;
 	border-radius: none;
 	line-height: 2rem;
@@ -306,14 +325,13 @@ input[type=text], input[type=submit] {
 
 
 #text-count {
-	position: fixed;
-	bottom: 6rem;
+	position: absolute;
+	top: -80px;
 	left: 0;
 	right: 0;
-	color: #666;
+	color: #666; /* ▐  ⊙ ▃ ⊙ ▐ */
 	font-family: Montserrat, sans-serif;
 	width: 100%;
-	box-shadow: 0 20px #87cefa;
 }
 
 #number {
@@ -322,20 +340,21 @@ input[type=text], input[type=submit] {
 
 footer {
 	position: absolute;
-	font-size: 0.9rem;
 	color: #fff;
-	background-color: #666;
+	background-color: #666; /* ▐  ⊙ ▃ ⊙ ▐ */
 	text-decoration: none;
 	left: 0;
 	right: 0;
 	bottom: 0;
 	text-align: center;
-	font-family: Montserrat;
-	line-height: 5rem;
+	margin: 0 -40px;
 }
 
 footer > span {
+	font-family: Montserrat;
+	line-height: 5rem;
 	display: inline-block;
+	font-size: 0.9rem;
 }
 
 footer > span > a {
@@ -371,6 +390,12 @@ footer > span > a {
 		font-size: 6rem;
 		padding: 3rem 0 1rem;
 	}
+	form {
+		width: 250px;
+	}
+	#submit-button {
+		width: 280px;
+	}
 	#testimonial {
 		font-size: 1.1rem;
 	}
@@ -380,6 +405,7 @@ footer > span > a {
 	footer {
 		padding: 15px 0;
 		text-align: center;
+		margin: 0 -20px;
 	}
 	footer > span {
 		display: block;
@@ -392,15 +418,21 @@ footer > span > a {
 }
 
 @media only screen and (max-width: 640px) {
-	html, body {
+/*	html, body {
 		font-size: 13px;
-	}
+	}*/
 	h1 {
 		font-size: 5rem;
 		padding: 2rem 0 1rem;
 	}
 	#splash-link {
 		font-size: 2rem;
+	}
+	form > input {
+		padding: 10px;
+	}
+	#submit-button {
+		width: 270px;
 	}
 	.modal-info {
 		font-size: 1.3rem;
@@ -415,12 +447,14 @@ footer > span > a {
 	h1 {
 		font-size: 4rem;
 	}
+	form {
+		margin: 20px 30px 0 0;
+	}
+	#create-title {
+		font-size: 2.5rem;
+	}
 	#splash-link {
 		font-size: 1.8rem;
-	}
-	#submit-button {
-		display: inline; /* instead of none */
-		opacity: 1;
 	}
 }
 
