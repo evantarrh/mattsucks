@@ -40,7 +40,8 @@ $().ready(function() {
         "\"I don't think anyone has ever liked " + first_name + ".\" - Dwayne \"The Rock\" Johnson",
         "\"Oh man, " + first_name + " tooootally sucks.\" - Justin Timberlake",
         "\"I've been to rehab 7 times, and even I know " + first_name + " needs help.\" - Lindsay Lohan",
-        "\"It's about time someone took " + gender_pronoun_alt_one(gender) + " down a notch.\" – " + first_name + "'s mom"
+        "\"It's about time someone took " + gender_pronoun_alt_one(gender) + " down a notch.\" – " + first_name + "'s mom",
+        "\"" + first_name + " is uninspiring in every way. God, what a bummer.\" - Bill Gates"
         ];
 
     var cool_your_jets = ["Cool your jets",

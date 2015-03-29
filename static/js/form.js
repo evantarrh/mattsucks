@@ -10,7 +10,7 @@ window.onload = function() {
         var isFirstNameValid = false;
         var isLastNameValid = false;
 
-        if (firstName.value.length < 3) {
+        if (firstName.value.length < 2) {
             firstName.style.color = "#aaa";
         }
         else if (firstName.value.length < 15) {
@@ -21,7 +21,7 @@ window.onload = function() {
             firstName.style.color = "#ff6a69";
         }
 
-        if (lastName.value.length < 3) {
+        if (lastName.value.length < 2) {
             lastName.style.color = "#aaa";
         }
         else if (lastName.value.length < 15) {
@@ -72,5 +72,9 @@ window.onload = function() {
     }
 
     window.setInterval(nameValidation, 100);
+
+    document.getElementById("alert-close").addEventListener("click", function() {
+        (document.getElementsByClassName("alert-container"))[0].style.display = "none";
+    })
 
 }

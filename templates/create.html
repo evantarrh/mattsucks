@@ -7,14 +7,14 @@
     <div class="alert incorrect">
         Whoops! Something went wrong. Try filling out the form again.
     </div>
-    <div class="close">
-        X
+    <div class="close" id="alert-close">
+        &times;
     </div>
 </div>
 {% endif %}
 
 <h1 id="create-title">For that special someone...</h1>
-<h2>We all have a friend who needs an ego check.</h2>
+<h2 id="create-subtitle">We all have a friend who needs an ego check.</h2>
 
 <div id="create-info">
     Fill out the form with your friend's info, and you'll create a page dedicated to your friend and how much they suck. Better yet, you can click a button, and we'll send them a text that tells them they suck.
@@ -28,7 +28,7 @@
         {{ form.last_name.label }} {{ form.last_name(size=20, placeholder="Last name") }}
         {{ form.phone_number.label }} {{ form.phone_number(size=20, placeholder="Phone number") }}
 
-        <input type="submit" class="invalid-submit" id="submit-button" value="Take 'em down a notch">
+        <input type="submit" class="valid-submit" id="submit-button" value="Take 'em down a notch">
     </form>
 </div>
 

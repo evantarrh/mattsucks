@@ -74,7 +74,7 @@ def createpage():
 	if request.method == "POST" and form.validate_on_submit():
 		print "form successful"
 		form_data = request.form
-		name = (form_data["first_name"] + form_data["last_name"]).replace(" ", "").lower()
+		name = re.sub("[^A-Za-z]", "", (form_data["first_name"] + form_data["last_name"])).lower()
 
 		number = re.sub("[^0-9]", "", form_data["phone_number"])
 		if number[0] == "1":
