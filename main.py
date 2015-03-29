@@ -28,7 +28,8 @@ def hello():
 @app.route('/<urlstring>', methods=["GET"])
 def renderPage(urlstring):
 	info = db.getPage(urlstring)
-	print info
+	if info is None:
+		return render_template('404.html')
 
 	show_alert = False
 	if request.cookies.get('alert') == "yes":
