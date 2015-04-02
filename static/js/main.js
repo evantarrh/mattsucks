@@ -177,7 +177,7 @@ $().ready(function() {
             color: page_color
         });
         $('#text-count > div, #number').css({
-            color: shade(page_color, -0.5)
+            color: shade(page_color, -0.4)
         });
         $('a').mouseover(function(){
             $(this).css({color: shade(page_color, 0.3)})
