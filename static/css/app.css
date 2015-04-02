@@ -168,16 +168,6 @@ h1 {
 	margin: 0;
 }
 
-#create-title {
-	font-size: 3.5rem;
-	padding: 2rem 0 1rem;
-}
-
-#create-subtitle {
-	color: #7e513f;
-	margin: 0 0 1.5rem;
-}
-
 h2 {
 	color: #f0fafa;
 	font-family: Merriweather, serif;
@@ -186,14 +176,6 @@ h2 {
 	font-size: 1.4rem;
 	line-height: 1.8rem;
 	margin: 0 0 2rem;
-}
-
-#create-info {
-	margin: auto;
-	font-family: Merriweather, serif;
-	color: #333; /* ▐  ⊙ ▃ ⊙ ▐ */
-	max-width: 600px;
-	line-height: 1.5rem;
 }
 
 button {
@@ -224,8 +206,9 @@ button:hover {
 }
 
 .form-container {
-	width: 100%;
+	width: 50%;
 	text-align: center;
+	float: right;
 }
 
 form {
@@ -235,6 +218,8 @@ form {
 	width: 300px;
 	display: inline-block;
 	-webkit-appearance: none;
+	position: relative;
+	right: 2rem;
 }
 
 form > input {
@@ -315,6 +300,7 @@ input[type=text], input[type=submit] {
 
 img {
 	max-width: 100%;
+	padding-bottom: 20px;
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */
@@ -331,7 +317,6 @@ img {
 :-ms-input-placeholder { /* Internet Explorer 10+ */
 	color: #aaa;
 }
-
 
 #text-count {
 	position: absolute;
@@ -382,6 +367,11 @@ footer > span > a {
 	padding-right: 10%;
 }
 
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+MEDIA QUERIES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
 
 @media only screen and (max-width: 800px) {
 	html, body {
@@ -462,9 +452,6 @@ footer > span > a {
 	}
 	form {
 		margin: 20px 30px 0 0;
-	}
-	#create-title {
-		font-size: 2.5rem;
 	}
 	#splash-link {
 		font-size: 1.3rem;

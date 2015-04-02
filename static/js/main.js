@@ -104,9 +104,15 @@ $().ready(function() {
             });
     }
 
+    var textCountTimeout;
+
     $("#hater-button").click(function(e) {
         numclicks++;
         window.clearInterval(buttonReset);
+
+        if (typeof textCountTimeout !== "undefined") {
+            clearInterval(textCountTimeout);
+        }
 
         if(numclicks > 3 && !rateLimited){
             simmerDown();
@@ -130,7 +136,7 @@ $().ready(function() {
                 $("#number").css({
                     color: shade(page_color, 0.9)
                 });
-                setTimeout(function(){
+                textCountTimeout = setTimeout(function(){
                     $('#number').fadeOut(400, function() {
                         $(this).css({
                             color: shade(page_color, -0.4)
@@ -164,21 +170,20 @@ $().ready(function() {
         }).mouseout(function() {
             $(this).css({boxShadow: "6px 6px 2px" + shade(page_color, -0.2)})           
         });
-        $('h1, footer').css({
+        $('h1, h2, footer').css({
             color: shade(page_color, 0.9)
         });
         $('a, .alert, #link-container').css({
             color: page_color
+        });
+        $('#text-count > div, #number').css({
+            color: shade(page_color, -0.5)
         });
         $('a').mouseover(function(){
             $(this).css({color: shade(page_color, 0.3)})
         }).mouseout(function() {
             $(this).css({color: page_color})            
         });
-        $('#text-count').css({
-            color: shade(page_color, -0.5),
-            background: page_color
-        })
     }
 
     function shade(color, percent) {   
@@ -200,8 +205,6 @@ $().ready(function() {
     $(".close").click(function() {
         $(".alert-container").css({display: "none"});
     })
-
-    setColors();
 
     function modalClose ( event ) {
         $("#modal-backdrop").fadeOut(200, function() {
@@ -231,6 +234,7 @@ $().ready(function() {
 
     // adding in text-count to footer & correcting padding
     $('footer').append('<div id="text-count"><div id="number">' + text_count + '</div><div>texts have been sent to ' + first_name + '\'s phone.</div></div>');
+    setColors();
     $('.content').css({paddingBottom: "180px"});
 
 });
