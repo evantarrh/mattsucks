@@ -16,6 +16,28 @@
 <div class="create-container">
     <div class="phone-container">
         <img id="iphone" src="https://d163x6kevlpuov.cloudfront.net/production/images/iphone-silver-cropped.png" />
+        <img id="phone-header" src="{{ url_for('static', filename='img/phoneheader.png') }}" />
+        <div class="notifications-wrapper">
+            <ul class="notifications-feed">
+                <li class="notification">
+                    <div class="messages-icon">
+                        <img src="{{ url_for('static', filename='img/messages_icon.png') }}" />
+                    </div>
+                    <div class="message">
+                        <p>
+                            <span class="from">+1 (512) 842-4900</span>
+                            <span class="time">now</span>
+                        </p>
+                        <p>
+                            <span class="message-content">You suck.</span>
+                        </p>
+                        <p>
+                            <span class="slide-to-reply">slide to reply</span>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="form-container">
         <form method="POST" action="/create">

@@ -55,26 +55,26 @@ def sendText(urlstring):
 
 	#implement IP checking
 	info = db.getPage(urlstring)
-	if info["text_count"] = 5:
+	if info["text_count"] is 5:
 		intro_message = client.messages.create(body="You're getting these texts because someone thought you needed to be taken down a notch: downanotch.co. Reply STOP and we'll shut up.",
 		to = info["phone_number"],
 		from_ = config.twilio_num)
 		return "Success! Message " + intro_message.sid + " was sent to " + info["first_name"] + "."
 
-	elif info["text_count"] = 15:
+	elif info["text_count"] is 15:
 		fifteen_message = client.messages.create(body="Look, I feel bad, but clearly some people have it out for you. Maybe you should try being nicer. Reply STOP and we'll shut up, though!",
 		to = info["phone_number"],
 		from_ = config.twilio_num)
 		return "Success! Message " + fifteen_message.sid + " was sent to " + info["first_name"] + "."
 
-	elif info["text_count"] = 50:
+	elif info["text_count"] is 50:
 		fifty_message = client.messages.create(body="Literally 50 people think you suck. Or one person was willing to press a button 50 times to tell you so. Either way, face it, you suck.",
 		to = info["phone_number"],
 		from_ = config.twilio_num)
 		return "Success! Message " + fifty_message.sid + " was sent to " + info["first_name"] + "."
 
-	elif info["text_count"] = 100:
-		fifty_message = client.messages.create(body="Holy shit, it is getting too expensive to keep up with all your haters. No more texts, but you can keep watching the count at downanotch.co/" + urlstring + "."
+	elif info["text_count"] is 100:
+		fifty_message = client.messages.create(body="Holy shit, it is getting too expensive to keep up with all your haters. No more texts, but you can keep watching the count at downanotch.co/" + urlstring + ".",
 		to = info["phone_number"],
 		from_ = config.twilio_num)
 		return "Success! Message " + fifty_message.sid + " was sent to " + info["first_name"] + "."

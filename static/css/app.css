@@ -229,6 +229,14 @@ button:hover {
 	width: 342px;
 }
 
+#phone-header {
+	position: absolute;
+	left: 36px;
+	top: 105px;
+	width: 290px;
+	z-index: 2;
+}
+
 form {
 	font-family: Montserrat, sans-serif;
 	font-weight: 400px;
